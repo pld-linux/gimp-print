@@ -20,7 +20,8 @@ URL:		http://gimp-print.sf.net/
 BuildRequires:	gimp-devel >= 1:1.2.3-1.4
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
-BuildRequires:	docbook-style-dsssl /usr/bin/db2ps
+BuildRequires:	docbook-style-dsssl
+BuildRequires:	docbook-utils
 BuildRequires:	ghostscript-ijs-devel
 Requires:	gimp >= 1:1.2.2-5
 Requires:	%{name}-lib = %{version}
