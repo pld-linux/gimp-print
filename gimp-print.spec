@@ -124,6 +124,7 @@ Group(es):	Aplicaciones/Impresión
 Group(fr):	Applications/Impression
 Group(pl):	Aplikacje/Drukowanie
 Group(pt):	Aplicações/Impressão
+Requires:	cups >= 1.1.9
 
 %description cups
 Gimp-print as CUPS plugin.
