@@ -1,7 +1,7 @@
 #
 # Conditional build:
 # _without_cups		- without CUPS subpackage
-# _without_gimp		- without GIMP plugin subpackage
+# _with_gimp		- build GIMP 1.2.x plugin subpackage
 # _without_ijs		- without IJS server for Ghostscript
 #
 Summary:	Collection of high-quality printer drivers
@@ -16,16 +16,23 @@ Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-usb.patch
 Patch2:		%{name}-info_and_pdf_only.patch
+Patch3:		%{name}-opt.patch
+Patch4:		%{name}-nolibs.patch
 URL:		http://gimp-print.sf.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
 %{!?_without_cups:BuildRequires:	cups-devel >= 1.1.9}
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
 %{!?_without_ijs:BuildRequires:	ghostscript-ijs-devel}
-%{!?_without_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
-%{!?_without_gimp:BuildRequires:	gimp-devel < 1.3}
+%{?_with_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
+%{?_with_gimp:BuildRequires:	gimp-devel < 1.3}
 BuildRequires:	gtk+-devel >= 1.2.0
+BuildRequires:	libtool
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
+# requred by texi2dvi when @image is used in .texi
+BuildRequires:	tetex-tex-misc
 Requires:	gimp >= 1:1.2.2-5
 Requires:	%{name}-lib = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -195,11 +202,19 @@ Sterownik IJS Gimp-print dla GhostScript.
 %patch0 -p1
 %patch1 -p1
 #%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
-%configure2_13 \
+rm -f scripts/{gettext,libtool}.m4
+%{__libtoolize}
+%{__aclocal} -I scripts -I src/main
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+%configure \
 	--with%{?_without_cups:out}-cups \
-	--with%{?_without_gimp:out}-gimp \
+	--with%{!?_with_gimp:out}-gimp \
 	--with%{?_without_ijs:out}-ijs \
 	--enable-escputil \
 	--enable-libgimpprint \
@@ -235,7 +250,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
-%if 0%{!?_without_gimp:1}
+%if 0%{?_with_gimp:1}
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %(gimptool --gimpplugindir)/plug-ins/*
