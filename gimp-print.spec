@@ -1,4 +1,4 @@
-Summary:	gimp-print
+Summary:	collection of high-quality printer drivers
 Name:		gimp-print
 Version:	4.2.0
 Release:	0.1
@@ -18,30 +18,58 @@ BuildRequires:	/usr/bin/db2pdf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-gimp-print
+Gimp-Print is a collection of very high quality printer drivers for
+UNIX/Linux. The goal of this project is uncompromising print quality and
+robustness. Included with this package is the Print plugin for the GIMP
+(hence the name), a CUPS driver, and a driver for Ghostscript that may be
+compiled into that package. This driver package is Foomatic-compatible to
+enable plug and play with many print spoolers. In addition, various printer
+maintenance utilities are included.  Many users report that the quality of
+Gimp-Print on high end Epson Stylus printers matches or exceeds the quality
+of the drivers supplied for Windows and Macintosh.
+
+%description -l pl
+Gimp-Print to zbiór bardzo wysokiej jako¶ci sterowników do drukarek dla
+systemów UNIX/Linux. Celem tego projektu jest jak najlepsza jako¶æ wydruku.
+Do³±czone do tego pakietu s±: wtyczka dla programu GIMP (st±d nazwa),
+sterownik CUPS i sterownik Ghostscriptu. Sterownik umo¿liwia bezpo¶redni±
+wspó³pracê z wieloma kolejkami wydruku. Dodatkowo do³±czonych jest wiele 
+programów do obs³ugi drukarki. Wielu u¿ytkowników twierdzi ze jako¶æ
+wydruków na najlepszych drukarkach Epson Stylus dorównuje albo nawet
+przerasta jako¶ci± to co jest oferowane przez sterowniki dla Windows i MacOS
 
 %package lib
 Summary: 	gimp-print library
+Summary(pl):	Biblioteka Gimp-print
 Group: 		Libraries
 
 %description lib
-gimp-print library
+Gimp-print library
+
+%description -l pl
+Biblioteka Gimp-print
 
 %package devel
-Summary:	gimp-print
+Summary:	gimp-print development tools
 Group:		Development/Libraries
 Requires:	%{name}-lib = %{epoch}:%{version}-%{release}
 
 %description devel
-gimp-print
+Gimp-print development tools and headers
+
+%description -l pl devel
+Nag³ówki i narzêdzia deweloperskie dla Gimp-print
 
 %package static
-Summary:	gimp-print
+Summary:	gimp-print static libraries
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
-gimp-print
+Gimp-print static libraries
+
+%description -l pl
+Biblioteki statyczne Gimp-print
 
 %package -n escputil
 Summary:	Tool for Epson ink printers
@@ -50,48 +78,68 @@ Group:		Applications/Printing
 %description -n escputil
 Tool for Epson ink printers
 
+%description -l pl -n escputil
+Narzêdzie dla drukarek atramentowych Epson
+
 %package cups
 Summary:	gimp-print as CUPS plugin
 Group:		Applications/Printing
 
 %description cups
-gimp-print as CUPS plugin
+Gimp-print as CUPS plugin
+
+%description -l pl cups
+Plugin gimp-print dla CUPS
 
 %package samples
-Summary:	gimp-print
+Summary:	gimp-print samples
 Group:		Applications/Printing
 
 %description samples
-gimp-print
+Gimp-print samples
+
+%description -l pl samples
+Przyk³ady dla Gimp-print
 
 %package doc-html
-Summary:	gimp-print
+Summary:	gimp-print docs as HTML
 Group:		Applications/Printing
 
 %description doc-html
-gimp-print
+Gimp-print documentation in HTML
 
+%description -l pl doc-html
+Dokumentacja do Gimp-print w HTML'u
+ 
 %package doc-pdf
-Summary:	gimp-print
+Summary:	gimp-print docs as PDF
 Group:		Applications/Printing
 
 %description doc-pdf
-gimp-print
+Gimp-print documentation in PDF
+
+%description -l pl doc-pdf
+Dokumentacja Gimp-Print w PDF'ie
 
 %package doc-ps
-Summary:	gimp-print
+Summary:	gimp-print docs as PS
 Group:		Applications/Printing
 
 %description doc-ps
-gimp-print
+Gimp-print documentation in PostScript
+
+%description -l pl doc-ps
+Dokumentacja Gimp-Print w PostScripcie
 
 %package manual-html
-Summary:	gimp-print
+Summary:	gimp-print manual in HTML
 Group:		Applications/Printing
 
 %description manual-html
-gimp-print
+Gimp-print manual in HTML
 
+%description -l pl manual-html
+Manual Gimp-Print w HTML'u 
 
 %prep
 %setup  -q
