@@ -1,0 +1,67 @@
+--- gimp-print-4.2.0/doc/Makefile.am~	Tue Feb 12 13:06:44 2002
++++ gimp-print-4.2.0/doc/Makefile.am	Tue Feb 12 13:06:44 2002
+@@ -30,7 +30,7 @@
+ 
+ MANUAL = gimpprint
+ HTMLDIR = manual-html
+-DOCS = $(MANUAL).dvi $(MANUAL).ps html
++DOCS = 
+ 
+ IMAGES = \
+  print-color.png \
+--- gimp-print-4.2.0/doc/users_guide/Makefile.am~	Tue Feb 12 13:04:17 2002
++++ gimp-print-4.2.0/doc/users_guide/Makefile.am	Tue Feb 12 13:04:17 2002
+@@ -113,7 +113,7 @@
+ 	fi ; \
+ 	$(DB2PDF) $(MANUAL).sgml
+ 
+-docs: html ps pdf
++docs: pdf
+ 
+ all-local: $(ALL_LOCAL_TARGETS)
+ 
+@@ -155,44 +155,6 @@
+ 	chmod a+rx $(HTMLDIR)
+ 	touch html-stamp
+ 
+-install-data-local: $(STANDARD_TARGETS)
+-	if test -n '$(STANDARD_TARGETS)' ; then \
+-	  $(mkinstalldirs) $(DESTDIR)$(datadir)/$(PACKAGE)/doc/html/figures ; \
+-	  $(mkinstalldirs) $(DESTDIR)$(datadir)/$(PACKAGE)/doc/html/stylesheet-images ; \
+-	  if test -f $(MANUAL).pdf ; then \
+-	    $(INSTALL_DATA) $(MANUAL).pdf $(DESTDIR)$(datadir)/$(PACKAGE)/doc ; \
+-	  elif test -f $(srcdir)/$(MANUAL).pdf ; then \
+-	    $(INSTALL_DATA) $(srcdir)/$(MANUAL).pdf $(DESTDIR)$(datadir)/$(PACKAGE)/doc ; \
+-	  fi ; \
+-	  if test -d $(HTMLDIR) ; then \
+-	    cd $(HTMLDIR) ; \
+-	  elif test -d $(srcdir)/$(HTMLDIR) ; then \
+-	    cd $(srcdir)/$(HTMLDIR) ; \
+-	  else \
+-	    exit 1 ; \
+-	  fi ; \
+-	  for file in *.html *.css ; do \
+-	    if test -f $$file ; then \
+-	      $(INSTALL_DATA) $$file $(DESTDIR)$(datadir)/$(PACKAGE)/doc/html ; \
+-	    fi ; \
+-	  done ; \
+-	  cd figures ; \
+-	  for file in *.png ; do \
+-	    if test -f $$file ; then \
+-	      $(INSTALL_DATA) $$file $(DESTDIR)$(datadir)/$(PACKAGE)/doc/html/figures ; \
+-	    fi ; \
+-	  done ; \
+-	  cd ../stylesheet-images ; \
+-	  for file in * ; do \
+-	    if test -f $$file ; then \
+-	      $(INSTALL_DATA) $$file $(DESTDIR)$(datadir)/$(PACKAGE)/doc/html/stylesheet-images ; \
+-	    fi ; \
+-	  done ; \
+-	fi
+-
+-uninstall-local:
+-	-$(RM) -r $(DESTDIR)$(datadir)/$(PACKAGE)/doc
+-
+ CLEAN_MANUALS = \
+ 	$(RM) -f $(MANUAL).pdf $(MANUAL).ps ;	\
+ 	$(RM) -rf html-stamp $(HTMLDIR) ;	\
