@@ -7,7 +7,7 @@ Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
 Version:	4.2.0
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
@@ -17,7 +17,7 @@ Patch2:		%{name}-usb.patch
 Patch3:		%{name}-info_and_pdf_only.patch
 URL:		http://gimp-print.sf.net/
 %{!?_without_cups:BuildRequires:	cups-devel >= 1.1.9}
-BuildRequires:	gimp-devel >= 1:1.2.2-5
+BuildRequires:	gimp-devel >= 1:1.2.3-1.4
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
 BuildRequires:	docbook-style-dsssl /usr/bin/db2ps
