@@ -20,6 +20,7 @@ Patch2:		%{name}-info_and_pdf_only.patch
 Patch3:		%{name}-opt.patch
 Patch4:		%{name}-nolibs.patch
 Patch5:		%{name}-am18.patch
+Patch6:		%{name}-genppd-nostatic.patch
 URL:		http://gimp-print.sf.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -204,13 +205,14 @@ Gimp-print IJS driver for GhostScript.
 Sterownik IJS Gimp-print dla GhostScript.
 
 %prep
-%setup  -q
+%setup -q
 %patch0 -p1
 %patch1 -p1
 #%patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 rm -f scripts/{gettext,libtool}.m4
