@@ -1,16 +1,5 @@
---- gimp-print-4.2.0/doc/Makefile.am~	Tue Feb 12 13:06:44 2002
-+++ gimp-print-4.2.0/doc/Makefile.am	Tue Feb 12 13:06:44 2002
-@@ -30,7 +30,7 @@
- 
- MANUAL = gimpprint
- HTMLDIR = manual-html
--DOCS = $(MANUAL).dvi $(MANUAL).ps html
-+DOCS = 
- 
- IMAGES = \
-  print-color.png \
---- gimp-print-4.2.0/doc/users_guide/Makefile.am~	Tue Feb 12 13:04:17 2002
-+++ gimp-print-4.2.0/doc/users_guide/Makefile.am	Tue Feb 12 13:04:17 2002
+--- gimp-print-4.2.1-pre3/doc/users_guide/Makefile.am.wiget	Sat Feb  2 01:35:52 2002
++++ gimp-print-4.2.1-pre3/doc/users_guide/Makefile.am	Fri Mar 22 14:22:12 2002
 @@ -113,7 +113,7 @@
  	fi ; \
  	$(DB2PDF) $(MANUAL).sgml
@@ -65,3 +54,14 @@
  CLEAN_MANUALS = \
  	$(RM) -f $(MANUAL).pdf $(MANUAL).ps ;	\
  	$(RM) -rf html-stamp $(HTMLDIR) ;	\
+--- gimp-print-4.2.1-pre3/doc/Makefile.am.wiget	Sat Feb 16 22:19:50 2002
++++ gimp-print-4.2.1-pre3/doc/Makefile.am	Fri Mar 22 14:23:34 2002
+@@ -30,7 +30,7 @@
+ 
+ MANUAL = gimpprint
+ HTMLDIR = manual-html
+-DOCS = $(MANUAL).dvi $(MANUAL).ps html-stamp
++DOCS = 
+ 
+ IMAGES = \
+  print-color.png \
