@@ -7,7 +7,7 @@ Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
 Version:	4.2.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Printing
 Group(cs):	Aplikace/Tisk
@@ -25,16 +25,12 @@ Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-info.patch
 Patch2:		%{name}-usb.patch
+Patch3:		%{name}-info_and_pdf_only.patch
 URL:		http://gimp-print.sf.net/
 BuildRequires:	gimp-devel >= 1:1.2.2-5
 %{!?_without_cups:BuildRequires:	cups-devel >= 1.1.9}
-BuildRequires:	/usr/bin/texi2html
-BuildRequires:	/usr/bin/texi2dvi
-BuildRequires:	tetex-dvips
 BuildRequires:	texinfo
-BuildRequires:	/usr/bin/db2html
 BuildRequires:	/usr/bin/db2ps
-BuildRequires:	/usr/bin/db2pdf
 Requires:	gimp >= 1:1.2.2-5
 Requires:	%{name}-lib = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -268,6 +264,7 @@ Przyk³ady dla Gimp-print.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %configure2_13 \
@@ -293,7 +290,7 @@ mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
 gzip -9nf README ChangeLog AUTHORS NEWS \
-	src/cups/README src/cups/command.txt
+	src/cups/README src/cups/command.txt doc/users_guide/*pdf
 
 %find_lang %{name}
 
@@ -315,7 +312,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files lib -f %{name}.lang
 %defattr(644,root,root,755)
-%doc doc-installed/user-guide doc-installed/manual doc/FAQ.html AUTHORS.gz README.gz NEWS.gz ChangeLog.gz
+%doc doc-installed/user-guide/*.gz doc-installed/manual doc/FAQ.html AUTHORS.gz README.gz NEWS.gz ChangeLog.gz
 %attr(755,root,root) %{_libdir}/libgimpprint.so.1.0.0
 
 %files devel
