@@ -351,7 +351,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun -n libgimpprint-devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
-%if %{!?_without_gimp:1}%{?_without_gimp:0}
+%if %{?_with_gimp:1}%{!?_with_gimp:0}
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %(gimptool --gimpplugindir)/plug-ins/*
