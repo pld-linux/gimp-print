@@ -309,7 +309,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/cups/model/en_GB/*
 %lang(da) %{_datadir}/cups/model/da/*
 %lang(fr) %{_datadir}/cups/model/fr/*
-%lang(nb) %{_datadir}/cups/model/no/*
+%lang(nb) %{_datadir}/cups/model/nb/*
 %lang(pl) %{_datadir}/cups/model/pl/*
 %lang(sv) %{_datadir}/cups/model/sv/*
 %attr(755,root,root) %{_prefix}/lib/cups/backend/*
