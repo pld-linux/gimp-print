@@ -15,7 +15,7 @@ Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
-Version:	4.3.5
+Version:	4.3.6
 Release:	1
 License:	GPL
 Group:		Applications/Printing
