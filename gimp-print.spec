@@ -2,15 +2,16 @@
 # Conditional build:
 # _without_cups		- without CUPS subpackage
 #
+%define		_pre	pre3
 Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
-Version:	4.2.0
-Release:	4
+Version:	4.2.1
+Release:	0.1.%{_pre}
 License:	GPL
 Group:		Applications/Printing
-Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
+Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}-%{_pre}.tar.gz
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-info.patch
 Patch2:		%{name}-usb.patch
@@ -21,6 +22,7 @@ BuildRequires:	gimp-devel >= 1:1.2.3-1.4
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
 BuildRequires:	docbook-style-dsssl /usr/bin/db2ps
+BuildRequires:	ghostscript-ijs-devel
 Requires:	gimp >= 1:1.2.2-5
 Requires:	%{name}-lib = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -174,12 +176,19 @@ Gimp-print samples.
 %description samples -l pl
 Przyk³ady dla Gimp-print.
 
-%prep
-%setup  -q
+%package ijs
+Summary:	Gimp-print IJS driver for GhostScript
+Group:		Applications/Printing
+
+%description ijs
+Gimp-print IJS driver for GhostScript
+
+%prep 
+%setup  -q -n %{name}-%{version}-%{_pre}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
+%patch3 -p1 -b .wiget
 
 %build
 %configure2_13 \
@@ -187,6 +196,8 @@ Przyk³ady dla Gimp-print.
 	--with-gimp \
 	--enable-escputil \
 	--enable-libgimpprint \
+	--with-ijs \
+	--without-foomatic \
 	--with-samples \
 	--with-user-guide \
 	--without-ghost
@@ -228,7 +239,7 @@ rm -rf $RPM_BUILD_ROOT
 %files lib -f %{name}.lang
 %defattr(644,root,root,755)
 %doc doc-installed/user-guide/*.gz doc-installed/manual doc/FAQ.html AUTHORS.gz README.gz NEWS.gz ChangeLog.gz
-%attr(755,root,root) %{_libdir}/libgimpprint.so.1.0.0
+%attr(755,root,root) %{_libdir}/libgimpprint.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
@@ -272,3 +283,6 @@ rm -rf $RPM_BUILD_ROOT
 %files samples
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}
+
+%files ijs
+%attr(755,root,root) %{_bindir}/ijsgimpprint
