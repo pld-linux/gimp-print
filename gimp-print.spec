@@ -207,7 +207,6 @@ Sterownik IJS Gimp-print dla GhostScript.
 #%patch3 -p1
 
 %build
-GIMPTOOL="/usr/X11R6/bin/gimptool"; export GIMPTOOL
 %configure \
 	%{?debug:--enable-debug} \
 	--with%{?_without_cups:out}-cups \
