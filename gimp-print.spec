@@ -2,7 +2,7 @@
 # Conditional build:
 # _without_cups		- without CUPS subpackage
 #
-%define		_pre	pre3
+%define		_pre	pre4
 Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
@@ -11,7 +11,7 @@ Version:	4.2.1
 Release:	0.1.%{_pre}
 License:	GPL
 Group:		Applications/Printing
-Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}-%{_pre}.tar.gz
+Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}-%{_pre}.tgz
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-info.patch
 Patch2:		%{name}-usb.patch
@@ -216,7 +216,7 @@ mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
 gzip -9nf README ChangeLog AUTHORS NEWS \
-	src/cups/README src/cups/command.txt doc/users_guide/*pdf
+	doc-installed/*.pdf src/cups/README src/cups/command.txt 
 
 %find_lang %{name}
 
@@ -238,7 +238,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files lib -f %{name}.lang
 %defattr(644,root,root,755)
-%doc doc-installed/user-guide/*.gz doc-installed/manual doc/FAQ.html AUTHORS.gz README.gz NEWS.gz ChangeLog.gz
+%doc doc-installed/*.gz doc-installed/manual doc/FAQ.html AUTHORS.gz README.gz NEWS.gz ChangeLog.gz
 %attr(755,root,root) %{_libdir}/libgimpprint.so.*.*.*
 
 %files devel
@@ -264,7 +264,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{?_without_cups:0}%{!?_without_cups:1}
 %files cups
 %defattr(644,root,root,755)
-%doc src/cups/README.gz src/cups/commands.txt.gz src/cups/commands
+%doc src/cups/README.gz src/cups/command.txt.gz src/cups/commands
 %{_sysconfdir}/cups/command.types
 %attr(755,root,root) %{_bindir}/cups-calibrate
 %{_datadir}/cups/calibrate.ppm
