@@ -1,26 +1,28 @@
 #
 # Conditional build:
 # _without_cups		- without CUPS subpackage
+# _without_gimp
 #
 Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
-Version:	4.2.2
-Release:	1
+Version:	4.3.4
+Release:	0.1
 License:	GPL
 Group:		Applications/Printing
-Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
+Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-info.patch
 Patch2:		%{name}-usb.patch
 Patch3:		%{name}-info_and_pdf_only.patch
 URL:		http://gimp-print.sf.net/
 %{!?_without_cups:BuildRequires:	cups-devel >= 1.1.9}
-BuildRequires:	gimp-devel >= 1:1.2.3-1.4
+%{!?_without_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
-BuildRequires:	docbook-style-dsssl /usr/bin/db2ps
+BuildRequires:	docbook-style-dsssl 
+BuildRequires:	/usr/bin/db2ps
 BuildRequires:	ghostscript-ijs-devel
 Requires:	gimp >= 1:1.2.2-5
 Requires:	%{name}-lib = %{version}
