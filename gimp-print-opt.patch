@@ -64,28 +64,6 @@
  AC_SUBST(MAIN_BIN)
  AC_SUBST(MAIN_DAT)
  AC_SUBST(MAIN_MAN)
-@@ -945,21 +940,17 @@
- man/gimpprint-mediatypes.7 man/gimpprint-models.7 man/gimpprint-resolutions.7
- man/ijsgimpprint.1 po/Makefile.in samples/Makefile
- src/Makefile src/escputil/Makefile src/gimp/Makefile
--dnl @-@-@-@-@ NO-GIMP @-@-@-@-@
- cups-gimpprint.list man/cups-calibrate.8 src/testpattern/Makefile
- src/cups/Makefile src/foomatic/Makefile test/Makefile
- src/foomatic/foomatic-generator src/ghost/Makefile src/ghost/contrib.mak.addon
--dnl @-@-@-@-@ YES-GIMP @-@-@-@-@
- src/main/Makefile src/main/gimpprint-config src/printdef/Makefile
- ],[
- chmod +x src/main/gimpprint-config
--dnl @-@-@-@-@ NO-GIMP @-@-@-@-@
- chmod +x src/foomatic/foomatic-generator
- if test -f src/ghost/contrib.mak.addon ; then
-   sed -e 's;${exec_prefix};'"${exec_prefix};" -e 's;${prefix};'"${prefix};" src/ghost/contrib.mak.addon > src/ghost/contrib.mak.addon.tmp
-   mv src/ghost/contrib.mak.addon.tmp src/ghost/contrib.mak.addon
- fi
--dnl @-@-@-@-@ YES-GIMP @-@-@-@-@
- echo "Finished configuring."
- echo "Type 'make' to build the package"
- echo "then 'make install' to install it."
 --- gimp-print-4.2.5/lib/Makefile.am.orig	Fri May  4 18:59:56 2001
 +++ gimp-print-4.2.5/lib/Makefile.am	Fri Apr 11 11:59:30 2003
 @@ -26,7 +26,7 @@
