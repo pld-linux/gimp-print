@@ -359,6 +359,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/%{name}/%{version}
 %dir %{_libdir}/%{name}/%{version}/modules
 %attr(755,root,root) %{_libdir}/%{name}/%{version}/modules/*.so
+%dir %{_datadir}/%{name}
 %{_datadir}/%{name}/%{version}
 %{_mandir}/man7/*
 
@@ -375,7 +376,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gimp-print
 %{_mandir}/man1/gimpprint-config.1*
 %{_mandir}/man3/gimpprint.3*
-%{_datadir}/info/*info*
+%{_infodir}/*info*
 
 %files -n libgimpprintui-devel
 %defattr(644,root,root,755)
