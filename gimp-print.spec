@@ -6,8 +6,8 @@ Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
-Version:	4.2.1
-Release:	2
+Version:	4.2.2
+Release:	1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
@@ -187,7 +187,7 @@ Gimp-print IJS driver for GhostScript
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1 -b .wiget
+%patch3 -p1
 
 %build
 %configure2_13 \
@@ -214,9 +214,6 @@ mv -f doc-installed/html doc-installed/user-guide
 mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
-gzip -9nf README ChangeLog AUTHORS NEWS \
-	doc-installed/*.pdf src/cups/README src/cups/command.txt 
-
 %find_lang %{name}
 
 %clean
@@ -237,7 +234,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files lib -f %{name}.lang
 %defattr(644,root,root,755)
-%doc doc-installed/*.gz doc-installed/manual doc/FAQ.html AUTHORS.gz README.gz NEWS.gz ChangeLog.gz
+%doc doc-installed/*.pdf doc-installed/manual doc/FAQ.html AUTHORS README NEWS ChangeLog
 %attr(755,root,root) %{_libdir}/libgimpprint.so.*.*.*
 
 %files devel
@@ -263,7 +260,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{?_without_cups:0}%{!?_without_cups:1}
 %files cups
 %defattr(644,root,root,755)
-%doc src/cups/README.gz src/cups/command.txt.gz src/cups/commands
+%doc src/cups/README src/cups/command.txt src/cups/commands
 %{_sysconfdir}/cups/command.types
 %attr(755,root,root) %{_bindir}/cups-calibrate
 %{_datadir}/cups/calibrate.ppm
@@ -284,4 +281,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_examplesdir}/%{name}
 
 %files ijs
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ijsgimpprint
