@@ -10,17 +10,6 @@ Version:	4.2.0
 Release:	3
 License:	GPL
 Group:		Applications/Printing
-Group(cs):	Aplikace/Tisk
-Group(da):	Programmer/Udskrift
-Group(de):	Applikationen/Drucken
-Group(es):	Aplicaciones/Impresión
-Group(fr):	Applications/Impression
-Group(it):	Applicazioni/Stampa
-Group(no):	Applikasjoner/Utskrift
-Group(pl):	Aplikacje/Drukowanie
-Group(pt):	Aplicações/Impressão
-Group(ru):	ğÒÉÌÏÖÅÎÉÑ/ğÅŞÁÔØ
-Group(sv):	Tillämpningar/Utskrift
 Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-info.patch
@@ -75,20 +64,6 @@ Summary:	gimp-print library
 Summary(pl):	Biblioteka Gimp-print
 Summary(pt_BR):	Bibliotecas dinâmicas para impressão de alta qualidade
 Group:		Libraries
-Group(cs):	Knihovny
-Group(da):	Biblioteker
-Group(de):	Bibliotheken
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(it):	Librerie
-Group(ja):	¥é¥¤¥Ö¥é¥ê
-Group(no):	Biblioteker
-Group(pl):	Biblioteki
-Group(pt):	Bibliotecas
-Group(pt_BR):	Bibliotecas
-Group(ru):	âÉÂÌÉÏÔÅËÉ
-Group(sv):	Bibliotek
-Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 
 %description lib
 Gimp-print library.
@@ -106,20 +81,6 @@ Summary:	gimp-print development tools
 Summary(pl):	Pliki nag³ówkowe itp. do gimp-print
 Summary(pt_BR):	Cabeçalhos e arquivos de desenvolvimento para o libgimpprint
 Group:		Development/Libraries
-Group(cs):	Vıvojové prostøedky/Knihovny
-Group(da):	Udvikling/Biblioteker
-Group(de):	Entwicklung/Bibliotheken
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(it):	Sviluppo/Librerie
-Group(ja):	³«È¯/¥é¥¤¥Ö¥é¥ê
-Group(no):	Utvikling/Bibliotek
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(pt):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(sv):	Utveckling/Bibliotek
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-lib = %{version}-%{release}
 
 %description devel
@@ -137,20 +98,6 @@ Summary:	gimp-print static libraries
 Summary(pl):	Statyczne biblioteki gimp-print
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com gimp-print
 Group:		Development/Libraries
-Group(cs):	Vıvojové prostøedky/Knihovny
-Group(da):	Udvikling/Biblioteker
-Group(de):	Entwicklung/Bibliotheken
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(it):	Sviluppo/Librerie
-Group(ja):	³«È¯/¥é¥¤¥Ö¥é¥ê
-Group(no):	Utvikling/Bibliotek
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(pt):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(sv):	Utveckling/Bibliotek
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
@@ -167,17 +114,6 @@ Summary:	Tool for Epson ink printers
 Summary(pl):	Narzêdzie do drukarek atramentowych Epson
 Summary(pt_BR):	Ferramenta de manutenção de impressoras ESPSON Stylus (R)
 Group:		Applications/Printing
-Group(cs):	Aplikace/Tisk
-Group(da):	Programmer/Udskrift
-Group(de):	Applikationen/Drucken
-Group(es):	Aplicaciones/Impresión
-Group(fr):	Applications/Impression
-Group(it):	Applicazioni/Stampa
-Group(no):	Applikasjoner/Utskrift
-Group(pl):	Aplikacje/Drukowanie
-Group(pt):	Aplicações/Impressão
-Group(ru):	ğÒÉÌÏÖÅÎÉÑ/ğÅŞÁÔØ
-Group(sv):	Tillämpningar/Utskrift
 
 %description -n escputil
 ESPSON Stylus (R) Printers Maintenance tool. This command line tool
@@ -215,17 +151,6 @@ Summary:	gimp-print as CUPS plugin
 Summary(pl):	gimp-print jako wtyczka do CUPS
 Summary(pt_BR):	Entradas ppd para serem usadas com o cups
 Group:		Applications/Printing
-Group(cs):	Aplikace/Tisk
-Group(da):	Programmer/Udskrift
-Group(de):	Applikationen/Drucken
-Group(es):	Aplicaciones/Impresión
-Group(fr):	Applications/Impression
-Group(it):	Applicazioni/Stampa
-Group(no):	Applikasjoner/Utskrift
-Group(pl):	Aplikacje/Drukowanie
-Group(pt):	Aplicações/Impressão
-Group(ru):	ğÒÉÌÏÖÅÎÉÑ/ğÅŞÁÔØ
-Group(sv):	Tillämpningar/Utskrift
 Requires:	cups >= 1.1.9
 
 %description cups
@@ -242,17 +167,6 @@ com o sistema de impressão cups.
 Summary:	gimp-print samples
 Summary(pl):	Przyk³ady do gimp-print
 Group:		Applications/Printing
-Group(cs):	Aplikace/Tisk
-Group(da):	Programmer/Udskrift
-Group(de):	Applikationen/Drucken
-Group(es):	Aplicaciones/Impresión
-Group(fr):	Applications/Impression
-Group(it):	Applicazioni/Stampa
-Group(no):	Applikasjoner/Utskrift
-Group(pl):	Aplikacje/Drukowanie
-Group(pt):	Aplicações/Impressão
-Group(ru):	ğÒÉÌÏÖÅÎÉÑ/ğÅŞÁÔØ
-Group(sv):	Tillämpningar/Utskrift
 
 %description samples
 Gimp-print samples.
