@@ -9,7 +9,7 @@ Group(es):	Aplicaciones/Impresión
 Group(fr):	Applications/Impression
 Group(pl):	Aplikacje/Drukowanie
 Group(pt):	Aplicações/Impressão
-Source0:	http://prdownloads.sourceforge.net/gimp-print/print-%{version}.tar.gz
+Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
 Patch0:		%{name}-install.patch
 URL:		http://gimp-print.sf.net/
 BuildRequires:	gimp-devel >= 1:1.2.2-4
