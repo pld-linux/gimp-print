@@ -1,15 +1,15 @@
 #
 # Conditional build:
-# _without_cups		- without CUPS subpackage
-# _with_gimp		- build GIMP 1.2.x plugin subpackage
-# _without_ijs		- without IJS server for Ghostscript
+%bcond_without	cups	# don't build CUPS plugin
+%bcond_with	gimp	# build GIMP 1.2.x plugin subpackage
+%bcond_without	ijs	# don't build IJS server for Ghostscript
 #
 Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
 Version:	4.2.5
-Release:	1.1
+Release:	2
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
@@ -19,16 +19,17 @@ Patch1:		%{name}-usb.patch
 Patch2:		%{name}-info_and_pdf_only.patch
 Patch3:		%{name}-opt.patch
 Patch4:		%{name}-nolibs.patch
+Patch5:		%{name}-am18.patch
 URL:		http://gimp-print.sf.net/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-%{!?_without_cups:BuildRequires:	cups-devel >= 1.1.9}
+%{?with_cups:BuildRequires:	cups-devel >= 1.1.9}
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
 BuildRequires:	gettext-devel
-%{!?_without_ijs:BuildRequires:	ghostscript-ijs-devel}
-%{?_with_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
-%{?_with_gimp:BuildRequires:	gimp-devel < 1.3}
+%{?with_ijs:BuildRequires:	ghostscript-ijs-devel}
+%{?with_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
+%{?with_gimp:BuildRequires:	gimp-devel < 1.3}
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	libtool
 BuildRequires:	texinfo
@@ -208,6 +209,7 @@ Sterownik IJS Gimp-print dla GhostScript.
 #%patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 rm -f scripts/{gettext,libtool}.m4
@@ -218,9 +220,9 @@ rm -f scripts/{gettext,libtool}.m4
 %{__autoheader}
 %{__automake}
 %configure \
-	--with%{?_without_cups:out}-cups \
-	--with%{!?_with_gimp:out}-gimp \
-	--with%{?_without_ijs:out}-ijs \
+	--with%{!?with_cups:out}-cups \
+	--with%{!?with_gimp:out}-gimp \
+	--with%{!?with_ijs:out}-ijs \
 	--enable-escputil \
 	--enable-libgimpprint \
 	--without-foomatic \
@@ -233,7 +235,8 @@ rm -f scripts/{gettext,libtool}.m4
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/doc doc-installed
 mv -f doc-installed/manual-html doc-installed/manual
@@ -255,7 +258,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
-%if 0%{?_with_gimp:1}
+%if %{with gimp}
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %(gimptool --gimpplugindir)/plug-ins/*
@@ -265,14 +268,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc-installed/*.pdf doc-installed/manual doc/FAQ.html AUTHORS README NEWS ChangeLog
 %attr(755,root,root) %{_libdir}/libgimpprint.so.*.*.*
-# conflict with libgimpprint-4.3.x (locales too...)
-#%{_mandir}/man7/gimpprint-*.7*
+# XXX: conflict with libgimpprint-4.3.x (locales too...)
+%{_mandir}/man7/gimpprint-*.7*
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/gimpprint-config
 %attr(755,root,root) %{_libdir}/libgimpprint.so
 %{_libdir}/libgimpprint.la
-%attr(755,root,root) %{_bindir}/gimpprint-config
 %{_includedir}/gimp-print
 %{_aclocaldir}/gimpprint.m4
 %{_mandir}/man1/gimpprint-config.1*
@@ -288,7 +291,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/escputil.1*
 %attr(755,root,root) %{_bindir}/escputil
 
-%if %{?_without_cups:0}%{!?_without_cups:1}
+%if %{with cups}
 %files cups
 %defattr(644,root,root,755)
 %doc src/cups/README src/cups/command.txt src/cups/commands
@@ -311,7 +314,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}
 
-%if 0%{!?_without_ijs:1}
+%if %{with ijs}
 %files ijs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ijsgimpprint
