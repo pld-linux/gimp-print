@@ -1,23 +1,5 @@
---- gimp-print-4.2.5/configure.in.orig	Sat Jan 25 00:51:57 2003
-+++ gimp-print-4.2.5/configure.in	Fri Apr 11 11:39:16 2003
-@@ -38,7 +38,7 @@
- 
- dnl we need to AC_DIVERT_PUSH/AC_DIVERT_POP these variable definitions so they
- dnl are available for $ac_help expansion (don't we all *love* autoconf?)
--AC_DIVERT_PUSH(AC_DIVERSION_NOTICE)dnl
-+AC_DIVERT_PUSH(NOTICE)dnl
- dnl
- dnl MAKING RELEASES (a step-by-step guide!)
- dnl ===============
-@@ -102,7 +102,7 @@
- 
- dnl Defaults
- dnl figure defaults, prior to $ac_help setup
--AC_DIVERT_PUSH(AC_DIVERSION_NOTICE)dnl
-+AC_DIVERT_PUSH(NOTICE)dnl
- BUILD_GIMP='(automatic)'
- USE_READLINE='yes'
- EXTRA_LIBREADLINE_DEPS=''
+--- gimp-print-4.3.x/configure.ac.orig	Sat Jan 25 00:51:57 2003
++++ gimp-print-4.3.x/configure.ac	Fri Apr 11 11:39:16 2003
 @@ -475,8 +475,6 @@
  else
    if test x$ENABLE_DEBUG = xyes ; then
@@ -27,73 +9,3 @@
    fi
  fi
  if test "$CC" = "gcc" ; then
-@@ -687,14 +687,14 @@
- AC_REPLACE_FUNCS(xgetcwd xmalloc)
- AC_CHECK_FUNC(asprintf,
-   AC_DEFINE(HAVE_ASPRINTF,, [Define if you have the asprintf function.]),
--  LIBOBJS="${LIBOBJS} vasprintf.o")
-+  AC_LIBOBJ([vasprintf]))
- AC_CHECK_FUNC(vasprintf,
-   AC_DEFINE(HAVE_VASPRINTF,, [Define if you have the vasprintf function.]),
--  LIBOBJS="${LIBOBJS} vasprintf.o")
-+  AC_LIBOBJ([vasprintf]))
- AC_SUBST(PRINT_VASPRINTF)
- AC_CHECK_FUNC(getopt_long,
-   AC_DEFINE(HAVE_GETOPT_LONG,, [Define if you have the getopt_long function.]),
--  LIBOBJS="${LIBOBJS} getopt.o getopt1.o")
-+  AC_LIBOBJ([getopt]); AC_LIBOBJ([getopt1]))
- 
- dnl Define what has to be built
- dnl @-@-@-@-@ NO-GIMP @-@-@-@-@
-@@ -847,9 +847,6 @@
- 
- dnl @-@-@-@-@ YES-GIMP @-@-@-@-@
- 
--dnl Define LTLIBOBJS
--LTLIBOBJS=`echo "$LIBOBJS" | sed 's/\.o/.lo/g'`
--LTALLOCA=`echo "$ALLOCA" | sed 's/\.o/.lo/g'`
- 
- dnl Definitions
- dnl @-@-@-@-@ NO-GIMP @-@-@-@-@
-@@ -912,8 +909,6 @@
- LIBGIMPPRINT_LIBS="${LIBGIMPPRINT_LIBS} ${GIMPPRINT_DEPLIBS}"
- AC_SUBST(LIBGIMPPRINT_LIBS)
- AC_SUBST(LIBREADLINE_DEPS)
--AC_SUBST(LTLIBOBJS)
--AC_SUBST(LTALLOCA)
- AC_SUBST(MAIN_BIN)
- AC_SUBST(MAIN_DAT)
- AC_SUBST(MAIN_MAN)
-@@ -945,21 +940,17 @@
- man/gimpprint-mediatypes.7 man/gimpprint-models.7 man/gimpprint-resolutions.7
- man/ijsgimpprint.1 po/Makefile.in samples/Makefile
- src/Makefile src/escputil/Makefile src/gimp/Makefile
--dnl @-@-@-@-@ NO-GIMP @-@-@-@-@
- cups-gimpprint.list man/cups-calibrate.8 src/testpattern/Makefile
- src/cups/Makefile src/foomatic/Makefile test/Makefile
- src/foomatic/foomatic-generator src/ghost/Makefile src/ghost/contrib.mak.addon
--dnl @-@-@-@-@ YES-GIMP @-@-@-@-@
- src/main/Makefile src/main/gimpprint-config src/printdef/Makefile
- ],[
- chmod +x src/main/gimpprint-config
--dnl @-@-@-@-@ NO-GIMP @-@-@-@-@
- chmod +x src/foomatic/foomatic-generator
- if test -f src/ghost/contrib.mak.addon ; then
-   sed -e 's;${exec_prefix};'"${exec_prefix};" -e 's;${prefix};'"${prefix};" src/ghost/contrib.mak.addon > src/ghost/contrib.mak.addon.tmp
-   mv src/ghost/contrib.mak.addon.tmp src/ghost/contrib.mak.addon
- fi
--dnl @-@-@-@-@ YES-GIMP @-@-@-@-@
- echo "Finished configuring."
- echo "Type 'make' to build the package"
- echo "then 'make install' to install it."
---- gimp-print-4.2.5/lib/Makefile.am.orig	Fri May  4 18:59:56 2001
-+++ gimp-print-4.2.5/lib/Makefile.am	Fri Apr 11 11:59:30 2003
-@@ -26,7 +26,7 @@
- 
- libprintut_la_SOURCES =
- 
--libprintut_la_LIBADD = @LTALLOCA@ @LTLIBOBJS@
-+libprintut_la_LIBADD = @LTLIBOBJS@
- 
- 
- noinst_HEADERS = getopt.h libprintut.h pathmax.h xmalloc.h

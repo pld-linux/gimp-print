@@ -23,6 +23,7 @@ Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
 # Source0-md5:	fc9c7c6bfac6f0d0cc77ebd115f125cb
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-usb.patch
+Patch2:		%{name}-opt.patch
 #Patch3:		%{name}-info_and_pdf_only.patch
 URL:		http://gimp-print.sf.net/
 %{?with_cups:BuildRequires:	cups-devel >= 1.1.9}
@@ -40,7 +41,7 @@ BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
 Requires:	gimp >= 1:1.2.2-5
-Requires:	libgimpprint = %{version}
+Requires:	libgimpprint = %{version}-%{release}
 Conflicts:	gimp > 1:1.3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -277,6 +278,7 @@ Dane foomatic dla sterownika IJS gimp-print.
 %setup  -q 
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 #%patch3 -p1
 
 # hack for gimp 1.3, but not sufficient to build
@@ -329,8 +331,12 @@ mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/doc doc-installed
 #mv -f doc-installed/html doc-installed/user-guide
 mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}
+%{ifwith cups}
 rm -f $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
 echo '.so cups-genppdconfig.8' > $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
+%endif
+
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/%{version}/modules/*.{a,la}
 
 %find_lang %{name}
 
@@ -376,8 +382,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc-installed/developer-html
 %attr(755,root,root) %{_libdir}/libgimpprint.so
 %{_libdir}/libgimpprint.la
-%{_pkgconfigdir}/gimpprint.pc
 %{_includedir}/gimp-print
+%exclude %{_includedir}/gimp-print/gimp-print-ui.h
+%{_pkgconfigdir}/gimpprint.pc
 %{_mandir}/man1/gimpprint-config.1*
 %{_mandir}/man3/gimpprint.3*
 %{_infodir}/*info*
@@ -386,8 +393,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgimpprintui.so
 %{_libdir}/libgimpprintui.la
+%{_includedir}/gimp-print/gimp-print-ui.h
 %{_pkgconfigdir}/gimpprint-ui.pc
-%{_includedir}/gimp-print
 
 %{ifwith static}
 %files -n libgimpprint-static
