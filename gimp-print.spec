@@ -200,8 +200,8 @@ Gimp-print IJS driver for GhostScript.
 %description ijs -l pl
 Sterownik IJS Gimp-print dla GhostScript.
 
-%prep 
-%setup  -q 
+%prep
+%setup  -q
 %patch0 -p1
 %patch1 -p1
 #%patch2 -p1
