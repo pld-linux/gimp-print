@@ -1,3 +1,7 @@
+#
+# Conditional build:
+# _without_cups		- without CUPS subpackage
+#
 Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
@@ -23,7 +27,7 @@ Patch1:		%{name}-info.patch
 Patch2:		%{name}-usb.patch
 URL:		http://gimp-print.sf.net/
 BuildRequires:	gimp-devel >= 1:1.2.2-5
-BuildRequires:	cups-devel >= 1.1.9
+%{!?_without_cups:BuildRequires:	cups-devel >= 1.1.9}
 BuildRequires:	/usr/bin/texi2html
 BuildRequires:	/usr/bin/texi2dvi
 BuildRequires:	tetex-dvips
@@ -32,6 +36,7 @@ BuildRequires:	/usr/bin/db2html
 BuildRequires:	/usr/bin/db2ps
 BuildRequires:	/usr/bin/db2pdf
 Requires:	gimp >= 1:1.2.2-5
+Requires:	%{name}-lib = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -185,10 +190,17 @@ can be used to perform the following tests:
 - Align Head
 - Printer Status
 - Ink level
-- Printer Identidy
+- Printer Identify
 
 %description -n escputil -l pl
-Narzêdzie dla drukarek atramentowych Epson.
+Dzia³aj±ce z linii poleceñ narzêdzie dla drukarek atramentowych Epson.
+Mo¿e byæ u¿yte do:
+- oczyszczenia g³owicy
+- testu dysz
+- wyrównania g³owicy
+- odczytu stanu drukarki
+- odczytu ilo¶ci tuszu
+- identyfikacji drukarki.
 
 %description -n escputil -l pt_BR
 Ferramenta de manutenção de impressoras ESPSON Stylus (R). Esta
@@ -259,7 +271,7 @@ Przyk³ady dla Gimp-print.
 
 %build
 %configure2_13 \
-	--with-cups \
+	%{!?_without_cups:--with-cups} \
 	--with-gimp \
 	--enable-escputil \
 	--enable-libgimpprint \
@@ -276,12 +288,12 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/doc doc-installed
 mv -f doc-installed/manual-html doc-installed/manual
-mv -f doc-installed/html doc-instlled/user-guide
+mv -f doc-installed/html doc-installed/user-guide
 mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
-gzip -9nf README ChangeLog AUTHORS README NEWS \
-	src/cups/README src/cups/commands.txt
+gzip -9nf README ChangeLog AUTHORS NEWS \
+	src/cups/README src/cups/command.txt
 
 %find_lang %{name}
 
@@ -326,6 +338,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/escputil.1*
 %attr(755,root,root) %{_bindir}/escputil
 
+%if %{?_without_cups:0}%{!?_without_cups:1}
 %files cups
 %defattr(644,root,root,755)
 %doc src/cups/README.gz src/cups/commands.txt.gz src/cups/commands
@@ -342,6 +355,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/cups/backend/*
 %attr(755,root,root) %{_libdir}/cups/filter/*
 %{_mandir}/man8/cups-calibrate.8*
+%endif
 
 %files samples
 %defattr(644,root,root,755)
