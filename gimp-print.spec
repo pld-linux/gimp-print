@@ -1,7 +1,7 @@
 Summary:	Collection of high-quality printer drivers
 Name:		gimp-print
 Version:	4.2.0
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Applications/Printing
 Group(de):	Applikationen/Drucken
@@ -12,6 +12,7 @@ Group(pt):	Aplicações/Impressão
 Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-info.patch
+Patch2:		%{name}-usb.patch
 URL:		http://gimp-print.sf.net/
 BuildRequires:	gimp-devel >= 1:1.2.2-4
 BuildRequires:	cups-devel >= 1.1.9
@@ -153,6 +154,7 @@ Przyk³ady dla Gimp-print.
 %setup  -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %configure2_13 \
@@ -177,7 +179,8 @@ mv doc-installed/html doc-instlled/user-guide
 mv $RPM_BUILD_ROOT%{_datadir}/gimp-print/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
-gzip -9nf README ChangeLog AUTHORS README NEWS
+gzip -9nf README ChangeLog AUTHORS README NEWS \
+	src/cups/README src/cups/commands.txt
 
 %find_lang %{name}
 
@@ -225,6 +228,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files cups
 %defattr(644,root,root,755)
+%doc src/cups/README.gz src/cups/commands.txt.gz src/cups/commands
 %{_sysconfdir}/cups/command.types
 %attr(755,root,root) %{_bindir}/cups-calibrate
 %{_datadir}/cups/calibrate.ppm
@@ -235,11 +239,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(no) %{_datadir}/cups/model/no/*
 %lang(pl) %{_datadir}/cups/model/pl/*
 %lang(sv) %{_datadir}/cups/model/sv/*
-%{_libdir}/cups/backend/epson
-%{_libdir}/cups/backend/canon
-%{_libdir}/cups/filter/rastertoprinter
-%{_libdir}/cups/filter/commandtoepson
-%{_libdir}/cups/filter/commandtocanon
+%attr(755,root,root) %{_libdir}/cups/backend/*
+%attr(755,root,root) %{_libdir}/cups/filter/*
 %{_mandir}/man8/cups-calibrate.8*
 
 %files samples
