@@ -429,7 +429,7 @@ rm -rf $RPM_BUILD_ROOT
 #%lang(es) %{_datadir}/cups/model/gimp-print/es/*
 #%lang(fr) %{_datadir}/cups/model/gimp-print/fr/*
 #%lang(nl) %{_datadir}/cups/model/gimp-print/nl/*
-#%lang(no) %{_datadir}/cups/model/gimp-print/no/*
+#%lang(nb) %{_datadir}/cups/model/gimp-print/nb/*
 #%lang(pl) %{_datadir}/cups/model/gimp-print/pl/*
 #%lang(pt) %{_datadir}/cups/model/gimp-print/pt/*
 #%lang(sk) %{_datadir}/cups/model/gimp-print/sk/*
