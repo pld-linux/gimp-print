@@ -1,0 +1,25 @@
+--- gimp-print-4.2.5/configure.in.orig	Fri Apr 11 11:59:53 2003
++++ gimp-print-4.2.5/configure.in	Fri Apr 11 12:08:36 2003
+@@ -562,16 +562,18 @@
+     dnl Save current library list...
+     SAVELIBS="$LIBS"
+     LIBS="$LIBS ${CUPS_LIBS}"
+-    AC_CHECK_LIB(socket,socket,
++    AC_CHECK_FUNC(socket, ,
++    [AC_CHECK_LIB(socket,socket,
+       if test x${OSTYPE} != xirix ; then
+       CUPS_LIBS="${CUPS_LIBS} -lsocket"
+       LIBS="$LIBS -lsocket"
+-    fi)
+-    AC_CHECK_LIB(nsl,gethostbyaddr,
++    fi)])
++    AC_CHECK_FUNC(gethostbyaddr, ,
++    [AC_CHECK_LIB(nsl,gethostbyaddr,
+       if test x${OSTYPE} != xirix ; then
+       CUPS_LIBS="${CUPS_LIBS} -lnsl"
+       LIBS="$LIBS -lnsl"
+-    fi)
++    fi)])
+ 
+     dnl Some OS's need to link against crypto stuff too if CUPS is compiled
+     dnl with crypto support... :(
