@@ -34,6 +34,7 @@ BuildRequires:	libtool
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
 # requred by texi2dvi when @image is used in .texi
+BuildRequires:	tetex-dvips
 BuildRequires:	tetex-tex-misc
 BuildRequires:	tetex-format-plain
 Requires:	gimp >= 1:1.2.2-5
