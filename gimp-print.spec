@@ -408,7 +408,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/escputil.1*
 %attr(755,root,root) %{_bindir}/escputil
 
-%if %{?_with_cups:1}%{!?_with_cups:0}
+%if %{!?_without_cups:1}%{?_without_cups:0}
 %files cups
 %defattr(644,root,root,755)
 %doc src/cups/README src/cups/command.txt src/cups/commands
