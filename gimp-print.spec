@@ -8,22 +8,21 @@ Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
-Version:	4.2.2
-Release:	2
+Version:	4.2.5
+Release:	1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
-Patch0:		%{name}-install.patch
-Patch1:		%{name}-info.patch
-Patch2:		%{name}-usb.patch
-Patch3:		%{name}-info_and_pdf_only.patch
-Patch4:		%{name}-escputil-cmdline-overflow.patch
+Patch0:		%{name}-info.patch
+Patch1:		%{name}-usb.patch
+Patch2:		%{name}-info_and_pdf_only.patch
 URL:		http://gimp-print.sf.net/
 %{!?_without_cups:BuildRequires:	cups-devel >= 1.1.9}
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
 %{!?_without_ijs:BuildRequires:	ghostscript-ijs-devel}
 %{!?_without_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
+%{!?_without_gimp:BuildRequires:	gimp-devel < 1.3}
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
@@ -195,9 +194,7 @@ Sterownik IJS Gimp-print dla GhostScript.
 %setup  -q 
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+#%patch2 -p1
 
 %build
 %configure2_13 \
@@ -248,6 +245,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc-installed/*.pdf doc-installed/manual doc/FAQ.html AUTHORS README NEWS ChangeLog
 %attr(755,root,root) %{_libdir}/libgimpprint.so.*.*.*
+# conflict with libgimpprint-4.3.x (locales too...)
+#%{_mandir}/man7/gimpprint-*.7*
 
 %files devel
 %defattr(644,root,root,755)
@@ -258,7 +257,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_aclocaldir}/gimpprint.m4
 %{_mandir}/man1/gimpprint-config.1*
 %{_mandir}/man3/gimpprint.3*
-%{_datadir}/info/*info*
+%{_infodir}/*info*
 
 %files static
 %defattr(644,root,root,755)
@@ -296,4 +295,5 @@ rm -rf $RPM_BUILD_ROOT
 %files ijs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ijsgimpprint
+%{_mandir}/man1/ijsgimpprint.1*
 %endif
