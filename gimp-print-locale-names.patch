@@ -1,11 +1,11 @@
---- gimp-print-4.2.6/configure.in.orig	2004-05-15 14:06:21.911364560 +0200
-+++ gimp-print-4.2.6/configure.in	2004-05-15 14:06:44.132986360 +0200
-@@ -94,7 +94,7 @@
+--- gimp-print-4.2.7/configure.in.orig	2004-07-19 22:39:48.390628128 +0200
++++ gimp-print-4.2.7/configure.in	2004-07-19 22:41:50.073129576 +0200
+@@ -95,7 +95,7 @@
  AM_CONFIG_HEADER(config.h)
  
  dnl Available languages (translations)
--ALL_LINGUAS="en_GB sv no fr da pl sk el nl es pt de ja cs"
-+ALL_LINGUAS="en_GB sv nb fr da pl sk el nl es pt de ja cs"
+-ALL_LINGUAS="en_GB sv no fr da pl sk el nl es pt de ja cs nb uk hu"
++ALL_LINGUAS="en_GB sv fr da pl sk el nl es pt de ja cs nb uk hu"
  AC_SUBST(ALL_LINGUAS)
  
  dnl Compiler options and definitions
