@@ -13,6 +13,7 @@ Release:	1.1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
+# Source0-md5: 82a75fa7c97423b1a787df41552da3cc
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-usb.patch
 Patch2:		%{name}-info_and_pdf_only.patch
