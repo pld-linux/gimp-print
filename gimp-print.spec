@@ -15,7 +15,7 @@ Patch0:		%{name}-install.patch
 Patch1:		%{name}-info.patch
 Patch2:		%{name}-usb.patch
 URL:		http://gimp-print.sf.net/
-BuildRequires:	gimp-devel >= 1:1.2.2-4
+BuildRequires:	gimp-devel >= 1:1.2.2-5
 BuildRequires:	cups-devel >= 1.1.9
 BuildRequires:	/usr/bin/texi2html
 BuildRequires:	tetex-dvips
@@ -23,6 +23,7 @@ BuildRequires:	texinfo
 BuildRequires:	/usr/bin/db2html
 BuildRequires:	/usr/bin/db2ps
 BuildRequires:	/usr/bin/db2pdf
+Requires:	gimp >= 1:1.2.2-5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
