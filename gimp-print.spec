@@ -15,16 +15,17 @@ Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
-Version:	4.3.25
-Release:	0.1
+Version:	5.0.0
+%define	bver	alpha1
+Release:	0.%{bver}.1
 License:	GPL
 Group:		Applications/Printing
-Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
-# Source0-md5:	13b5265171b03ec719090492cb0a1018
+Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}-%{bver}.tar.bz2
+# Source0-md5:	71ddae93313403076095ac5bd85f8f1f
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-usb.patch
 Patch2:		%{name}-opt.patch
-#Patch3:		%{name}-info_and_pdf_only.patch
+Patch3:		%{name}-genppd-nostatic.patch
 URL:		http://gimp-print.sf.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -277,11 +278,11 @@ foomatic data for gimp-print IJS driver.
 Dane foomatic dla sterownika IJS gimp-print.
 
 %prep 
-%setup  -q 
+%setup -q -n %{name}-%{version}-%{bver}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-#%patch3 -p1
+%patch3 -p1
 
 # hack for gimp 1.3, but not sufficient to build
 # build fix is easy (s/\(GimpRunMode\)Type/\1/ in print.c), but only segfaults then
@@ -340,7 +341,7 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
 echo '.so cups-genppdconfig.8' > $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
 %endif
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/%{version}/modules/*.{a,la}
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/%{version}*/modules/*.{a,la}
 
 %find_lang %{name}
 
@@ -370,11 +371,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/FAQ.html AUTHORS README NEWS ChangeLog
 %attr(755,root,root) %{_libdir}/libgimpprint-*.so
 %dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/%{version}
-%dir %{_libdir}/%{name}/%{version}/modules
-%attr(755,root,root) %{_libdir}/%{name}/%{version}/modules/*.so
+%dir %{_libdir}/%{name}/%{version}*
+%dir %{_libdir}/%{name}/%{version}*/modules
+%attr(755,root,root) %{_libdir}/%{name}/%{version}*/modules/*.so
 %dir %{_datadir}/%{name}
-%{_datadir}/%{name}/%{version}
+%{_datadir}/%{name}/%{version}*
 %{_mandir}/man7/*
 
 %files -n libgimpprint-devel
