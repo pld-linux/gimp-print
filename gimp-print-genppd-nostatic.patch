@@ -1,8 +1,8 @@
---- gimp-print-4.2.6/configure.in.orig	2004-01-17 15:52:39.000000000 +0100
-+++ gimp-print-4.2.6/configure.in	2004-01-17 15:55:25.166687384 +0100
-@@ -472,7 +472,7 @@
-   AC_DEFINE(HAVE_GNU_LD,, [Define if GNU ld is present.])
+--- gimp-print-5.0.0-alpha1/configure.ac.orig	2004-01-17 16:08:53.000000000 +0100
++++ gimp-print-5.0.0-alpha1/configure.ac	2004-01-17 16:11:06.027654776 +0100
+@@ -740,7 +740,7 @@
  fi
+ AM_CONDITIONAL(BUILD_MODULES, test x$MODULE = xtrue)
  
 -AM_CONDITIONAL(BUILD_GENPPD_STATIC, test x"$enable_static" = xyes)
 +AM_CONDITIONAL(BUILD_GENPPD_STATIC, false)

@@ -9,26 +9,6 @@
    fi
  fi
  if test "$CC" = "gcc" ; then
-@@ -618,15 +618,15 @@
- AC_REPLACE_FUNCS(xgetcwd xmalloc)
- AC_CHECK_FUNC(asprintf,
-   AC_DEFINE(HAVE_ASPRINTF,, [Define if you have the `asprintf' function.]),
--  AC_LIBOBJ(vasprintf))
-+  [AC_LIBOBJ(vasprintf)])
- AC_CHECK_FUNC(vasprintf,
-   AC_DEFINE(HAVE_VASPRINTF,, [Define if you have the `vasprintf' function.]),
--  AC_LIBOBJ(vasprintf))
-+  [AC_LIBOBJ(vasprintf)])
- AC_SUBST(PRINT_VASPRINTF)
- AC_CHECK_FUNC(getopt_long,
-   AC_DEFINE(HAVE_GETOPT_LONG,, [Define if you have the `getopt_long' function.]),
--  AC_LIBOBJ(getopt)
--  AC_LIBOBJ(getopt1))
-+  [AC_LIBOBJ(getopt)
-+  AC_LIBOBJ(getopt1)])
- 
- 
- dnl Define what has to be built
 @@ -719,13 +719,6 @@
  fi
  AM_CONDITIONAL(BUILD_MODULES, test x$MODULE = xtrue)
