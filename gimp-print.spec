@@ -23,7 +23,7 @@ Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-usb.patch
 Patch2:		%{name}-gettext.patch
-Patch3:		%{name}-info_and_pdf_only.patch
+#Patch3:		%{name}-info_and_pdf_only.patch
 URL:		http://gimp-print.sf.net/
 %{!?_without_cups:BuildRequires:	cups-devel >= 1.1.9}
 BuildRequires:	docbook-style-dsssl
