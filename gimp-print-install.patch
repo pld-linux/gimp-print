@@ -4,7 +4,7 @@
  
  install-libexecPROGRAMS: $(libexec_PROGRAMS)
  	@DESTDIR='$(DESTDIR)'; export DESTDIR;\
-+	$(mkinstalldirs) `$(GIMPTOOL) --gimpplugindir`/plug-ins; \
++	$(mkinstalldirs) $(DESTDIR)`$(GIMPTOOL) --gimpplugindir`/plug-ins; \
  	list='$(libexec_PROGRAMS)'; for p in $$list; do \
  	  if test -f $$p; then \
  	    if test -f .libs/$$p; then \
