@@ -19,7 +19,7 @@ Version:	4.3.8
 Release:	0.2
 License:	GPL
 Group:		Applications/Printing
-Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-usb.patch
 Patch2:		%{name}-gettext.patch
