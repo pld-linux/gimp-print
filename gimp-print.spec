@@ -132,7 +132,6 @@ Summary:	gimp-print UI library
 Summary(pl):	Biblioteka gimp-print
 Summary(pt_BR):	Bibliotecas dinâmicas para impressão de alta qualidade
 Group:		Libraries
-Obsoletes:	gimp-print-lib 
 Requires:	libgimpprint = %{version}-%{release}
 
 %description -n libgimpprintui
@@ -152,7 +151,7 @@ Summary(pl):	Pliki nag³ówkowe itp. do gimp-print
 Summary(pt_BR):	Cabeçalhos e arquivos de desenvolvimento para o libgimpprint
 Group:		Development/Libraries
 Requires:	libgimpprintui = %{version}-%{release}
-Obsoletes:	gimp-print-devel
+Requires:	libgimpprint-devel = %{version}-%{release}
 
 %description -n libgimpprintui-devel
 Gimp-print development tools and headers.
@@ -170,7 +169,6 @@ Summary(pl):	Statyczne biblioteki gimp-print
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com gimp-print
 Group:		Development/Libraries
 Requires:	libgimpprintui-devel = %{version}-%{release}
-Obsoletes:	gimp-print-static
 
 %description -n libgimpprintui-static
 Gimp-print static libraries.
@@ -180,7 +178,6 @@ Biblioteki statyczne Gimp-print.
 
 %description -n libgimpprintui-static -l pt_BR
 Bibliotecas estáticas para desenvolvimento com gimp-print.
-
 
 %package -n escputil
 Summary:	Tool for Epson ink printers
@@ -280,6 +277,7 @@ Dane foomatic dla sterownika IJS gimp-print.
 #%patch3 -p1
 
 # hack for gimp 1.3, but not sufficient to build
+# build fix is easy (s/\(GimpRunMode\)Type/\1/ in print.c), but only segfaults then
 #if [ -f %{_aclocaldir}/gimp-1.4.m4 ]; then
 #	echo 'AC_DEFUN([AM_PATH_GIMP],AM_PATH_GIMP_1_4)' > m4/gimp14.m4
 #fi
@@ -289,7 +287,7 @@ rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
 %{!?_without_gimp:rm -f m4extra/gimp.m4}
 %{__libtoolize}
 %{__autopoint}
-aclocal -I m4 -I m4extra
+%{__aclocal} -I m4 -I m4extra
 touch src/main/gimpprint.pc.in \
 	src/libgimpprintui/gimpprint-ui.pc.in
 %{__automake}
