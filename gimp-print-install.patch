@@ -1,0 +1,10 @@
+--- gimp-print-4.2.0/src/gimp/Makefile.in.ww	Wed Feb  6 15:48:33 2002
++++ gimp-print-4.2.0/src/gimp/Makefile.in	Wed Feb  6 15:49:11 2002
+@@ -444,6 +444,7 @@
+ 
+ install-libexecPROGRAMS: $(libexec_PROGRAMS)
+ 	@DESTDIR='$(DESTDIR)'; export DESTDIR;\
++	$(mkinstalldirs) $(DESTDIR)`$(GIMPTOOL) --gimpplugindir`/plug-ins; \
+ 	list='$(libexec_PROGRAMS)'; for p in $$list; do \
+ 	  if test -f $$p; then \
+ 	    if test -f .libs/$$p; then \
