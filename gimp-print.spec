@@ -1,5 +1,6 @@
 Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
+Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
 Version:	4.2.0
 Release:	1
@@ -10,6 +11,7 @@ Group(es):	Aplicaciones/Impresión
 Group(fr):	Applications/Impression
 Group(pl):	Aplikacje/Drukowanie
 Group(pt):	Aplicações/Impressão
+Group(ru):	ğÒÉÌÏÖÅÎÉÑ/ğÅŞÁÔØ
 Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-info.patch
@@ -49,9 +51,21 @@ u¿ytkowników twierdzi ze jako¶æ wydruków na najlepszych drukarkach
 Epson Stylus dorównuje albo nawet przerasta jako¶ci± to, co jest
 oferowane przez sterowniki dla Windows i MacOS.
 
+%description -l pt_BR
+Este é um plugin para o Gimp que permite a impressão de imagens e
+fotos em uma qualidade muito boa em várias impressoras de jato de
+tinta modernas e em algumas lasers. Especialmente nas impressoras
+Epsion Stylus a qualidade se equipara a mesma obtida em sistema
+operacionais proprietários, uma vez que a Epson publicou as
+especificações dos protocolos usados por suas impressoras. Outras
+marcas de impressoras como HP também atingem qualidades altas de
+impressão. Esse plugin também é capaz de gerar arquivos Postscript que
+permite ser usado em qualquer outra impressora.
+
 %package lib
 Summary:	gimp-print library
 Summary(pl):	Biblioteka Gimp-print
+Summary(pt_BR):	Bibliotecas dinâmicas para impressão de alta qualidade
 Group:		Libraries
 Group(de):	Bibliotheken
 Group(es):	Bibliotecas
@@ -68,9 +82,15 @@ Gimp-print library.
 %description lib -l pl
 Biblioteka Gimp-print.
 
+%description lib -l pt_BR
+Esse pacote contém bibliotecas dinâmicas de alta qualidade para serem
+usados pelo plugin do Gimp gimp-print, pelo driver "stp" do
+ghostscript e por drivers especializados do CUPS
+
 %package devel
 Summary:	gimp-print development tools
 Summary(pl):	Pliki nag³ówkowe itp. do gimp-print
+Summary(pt_BR):	Cabeçalhos e arquivos de desenvolvimento para o libgimpprint
 Group:		Development/Libraries
 Group(de):	Entwicklung/Bibliotheken
 Group(es):	Desarrollo/Bibliotecas
@@ -88,9 +108,14 @@ Gimp-print development tools and headers.
 %description devel -l pl
 Nag³ówki i narzêdzia deweloperskie dla Gimp-print.
 
+%description devel -l pt_BR
+Este são os arquivos de desenvolvimento para compilar programas com a
+biblioteca libgimpprint.
+
 %package static
 Summary:	gimp-print static libraries
 Summary(pl):	Statyczne biblioteki gimp-print
+Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com gimp-print
 Group:		Development/Libraries
 Group(de):	Entwicklung/Bibliotheken
 Group(es):	Desarrollo/Bibliotecas
@@ -108,31 +133,56 @@ Gimp-print static libraries.
 %description static -l pl
 Biblioteki statyczne Gimp-print.
 
+%description static -l pt_BR
+Bibliotecas estáticas para desenvolvimento com gimp-print.
+
 %package -n escputil
 Summary:	Tool for Epson ink printers
 Summary(pl):	Narzêdzie do drukarek atramentowych Epson
+Summary(pt_BR):	Ferramenta de manutenção de impressoras ESPSON Stylus (R)
 Group:		Applications/Printing
 Group(de):	Applikationen/Drucken
 Group(es):	Aplicaciones/Impresión
 Group(fr):	Applications/Impression
 Group(pl):	Aplikacje/Drukowanie
 Group(pt):	Aplicações/Impressão
+Group(ru):	ğÒÉÌÏÖÅÎÉÑ/ğÅŞÁÔØ
 
 %description -n escputil
-Tool for Epson ink printers.
+ESPSON Stylus (R) Printers Maintenance tool. This command line tool
+can be used to perform the following tests:
+- Clean head
+- Nozzle check
+- Align Head
+- Printer Status
+- Ink level
+- Printer Identidy
 
 %description -n escputil -l pl
 Narzêdzie dla drukarek atramentowych Epson.
 
+%description -n escputil -l pt_BR
+Ferramenta de manutenção de impressoras ESPSON Stylus (R). Esta
+ferramenta de linha de comando é usada para executar as seguintes
+tarefas:
+- Limpeza de cabeçote
+- Checagem de Qualidade de impressão
+- Alinhamento de cabeçote
+- Estado da Impressora
+- Nível de tinta
+- Identificação da Impressora
+
 %package cups
 Summary:	gimp-print as CUPS plugin
 Summary(pl):	gimp-print jako wtyczka do CUPS
+Summary(pt_BR):	Entradas ppd para serem usadas com o cups
 Group:		Applications/Printing
 Group(de):	Applikationen/Drucken
 Group(es):	Aplicaciones/Impresión
 Group(fr):	Applications/Impression
 Group(pl):	Aplikacje/Drukowanie
 Group(pt):	Aplicações/Impressão
+Group(ru):	ğÒÉÌÏÖÅÎÉÑ/ğÅŞÁÔØ
 Requires:	cups >= 1.1.9
 
 %description cups
@@ -140,6 +190,10 @@ Gimp-print as CUPS plugin.
 
 %description cups -l pl
 Plugin gimp-print dla CUPS.
+
+%description cups -l pt_BR
+Este pacote contém os arquivos ppd para se usar o driver Gimp-Print
+com o sistema de impressão cups.
 
 %package samples
 Summary:	gimp-print samples
@@ -150,6 +204,7 @@ Group(es):	Aplicaciones/Impresión
 Group(fr):	Applications/Impression
 Group(pl):	Aplikacje/Drukowanie
 Group(pt):	Aplicações/Impressão
+Group(ru):	ğÒÉÌÏÖÅÎÉÑ/ğÅŞÁÔØ
 
 %description samples
 Gimp-print samples.
