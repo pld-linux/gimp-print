@@ -308,8 +308,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(no) %{_datadir}/cups/model/no/*
 %lang(pl) %{_datadir}/cups/model/pl/*
 %lang(sv) %{_datadir}/cups/model/sv/*
-%attr(755,root,root) %{_libdir}/cups/backend/*
-%attr(755,root,root) %{_libdir}/cups/filter/*
+%attr(755,root,root) %{_prefix}/lib/cups/backend/*
+%attr(755,root,root) %{_prefix}/lib/cups/filter/*
 %{_mandir}/man8/cups-calibrate.8*
 %endif
 
