@@ -300,6 +300,7 @@ touch src/main/gimpprint.pc.in \
 	--with-modules=dlopen \
 	--enable-escputil \
 	--enable-libgimpprint \
+	%{?_without_cups:--disable-cups-ppds} \
 	--disable-translated-cups-ppds \
 	--enable-cups-level3-ppds \
 	--enable-lexmarkutil \
