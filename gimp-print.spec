@@ -1,10 +1,10 @@
 #
 # Conditional build:
-%bcond_without cups     # without CUPS subpackage
-%bcond_without gimp     # without GIMP plugin subpackage
-%bcond_without ijs      # without IJS server for Ghostscript
-%bcond_without foomatic # don't generate foomatic data
-%bcond_with static      # enable building static library
+# _without_cups     # without CUPS subpackage
+# _without_gimp     # without GIMP plugin subpackage
+# _without_ijs      # without IJS server for Ghostscript
+# _without_foomatic # don't generate foomatic data
+# _with_static      # enable building static library
 #
 # TODO:
 # - port info_and_pdf_only.patch and install documentation in correct place.
@@ -26,16 +26,14 @@ Patch1:		%{name}-usb.patch
 Patch2:		%{name}-opt.patch
 #Patch3:		%{name}-info_and_pdf_only.patch
 URL:		http://gimp-print.sf.net/
-%{?with_cups:BuildRequires:	cups-devel >= 1.1.9}
+%{!?_without_cups:BuildRequires:	cups-devel >= 1.1.9}
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
-%{?with_foomatic:BuildRequires:	foomatic-db-engine >= 2.9.1}
+%{!?_without_foomatic:BuildRequires:	foomatic-db-engine >= 2.9.1}
 BuildRequires:	gettext-autopoint
-%{?with_ijs:BuildRequires:	ghostscript-ijs-devel}
-%{ifwith gimp}
-BuildRequires:	gimp-devel <  1:1.3.0
-BuildRequires:	gimp-devel >= 1:1.2.3-1.4
-%endif
+%{!?_without_ijs:BuildRequires:	ghostscript-ijs-devel}
+%{!?_without_gimp:BuildRequires:	gimp-devel <  1:1.3.0}
+%{!?_without_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	texinfo
@@ -290,7 +288,7 @@ Dane foomatic dla sterownika IJS gimp-print.
 
 %build
 rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
-%{?with_gimp:rm -f m4extra/gimp.m4}
+%{!?_without_gimp:rm -f m4extra/gimp.m4}
 %{__libtoolize}
 %{__autopoint}
 %{__aclocal} -I m4 -I m4extra
@@ -301,15 +299,15 @@ touch src/main/gimpprint.pc.in \
 
 %configure \
 	%{?debug:--enable-debug} \
-	--with%{!?with_cups:out}-cups \
-	--with%{!?with_gimp:out}-gimp \
-	--with%{!?with_ijs:out}-ijs \
-	--with%{!?with_foomatic:out}-foomatic \
-	%{?with_static:--enable-static} \
+	--with%{?_without_cups:out}-cups \
+	--with%{?_without_gimp:out}-gimp \
+	--with%{?_without_ijs:out}-ijs \
+	--with%{?_without_foomatic:out}-foomatic \
+	%{?_with_static:--enable-static} \
 	--with-modules=dlopen \
 	--enable-escputil \
 	--enable-libgimpprint \
-	%{!?with_cups:--disable-cups-ppds} \
+	%{?_without_cups:--disable-cups-ppds} \
 	--disable-translated-cups-ppds \
 	--enable-cups-level3-ppds \
 	--enable-lexmarkutil \
@@ -331,10 +329,9 @@ mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/doc doc-installed
 #mv -f doc-installed/html doc-installed/user-guide
 mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}
-%{ifwith cups}
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
-echo '.so cups-genppdconfig.8' > $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
-%endif
+
+%{!?_without_cups:rm -f $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8}
+%{!?_without_cups:echo '.so cups-genppdconfig.8' > $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8}
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/%{version}/modules/*.{a,la}
 
@@ -354,7 +351,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun -n libgimpprint-devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
-%{ifwith gimp}
+%if %{!?_without_gimp:1}%{?_without_gimp:0}
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %(gimptool --gimpplugindir)/plug-ins/*
@@ -396,7 +393,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gimp-print/gimp-print-ui.h
 %{_pkgconfigdir}/gimpprint-ui.pc
 
-%{ifwith static}
+%if %{?_with_static:1}%{!?_with_static:0}
 %files -n libgimpprint-static
 %defattr(644,root,root,755)
 %{_libdir}/libgimpprint.a
@@ -411,7 +408,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/escputil.1*
 %attr(755,root,root) %{_bindir}/escputil
 
-%{ifwith cups}
+%if %{?_with_cups:1}%{!?_with_cups:0}
 %files cups
 %defattr(644,root,root,755)
 %doc src/cups/README src/cups/command.txt src/cups/commands
@@ -442,14 +439,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}
 
-%{ifwith ijs}
+%if %{!?_without_ijs:1}%{?_without_ijs:0}
 %files ijs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ijsgimpprint
 %{_mandir}/man1/ijsgimpprint.1*
 %endif
 
-%{ifwith foomatic}
+%if %{!?_without_foomatic:1}%{?_without_foomatic:0}
 %files -n foomatic-db-gimp-print
 %defattr(644,root,root,755)
 %{_datadir}/foomatic/db/source/driver/*
