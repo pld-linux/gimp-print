@@ -168,6 +168,7 @@ Summary:	gimp-print as CUPS plugin
 Summary(pl):	gimp-print jako wtyczka do CUPS
 Summary(pt_BR):	Entradas ppd para serem usadas com o cups
 Group:		Applications/Printing
+Requires:	%{name}-lib = %{version}-%{release}
 Requires:	cups >= 1.1.9
 
 %description cups
