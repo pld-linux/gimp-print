@@ -189,7 +189,7 @@ Przyk³ady dla Gimp-print.
 	--enable-libgimpprint \
 	--with-samples \
 	--with-user-guide \
-	--without-ghost 
+	--without-ghost
 %{__make}
 
 %install
@@ -221,7 +221,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
-%files 
+%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %(gimptool --gimpplugindir)/plug-ins/*
 
