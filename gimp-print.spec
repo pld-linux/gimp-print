@@ -241,7 +241,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgimpprint.so
-%attr(755,root,root) %{_libdir}/libgimpprint.la
+%{_libdir}/libgimpprint.la
 %attr(755,root,root) %{_bindir}/gimpprint-config
 %{_includedir}/gimp-print
 %{_aclocaldir}/gimpprint.m4
