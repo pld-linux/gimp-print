@@ -9,3 +9,48 @@
    fi
  fi
  if test "$CC" = "gcc" ; then
+@@ -618,15 +618,15 @@
+ AC_REPLACE_FUNCS(xgetcwd xmalloc)
+ AC_CHECK_FUNC(asprintf,
+   AC_DEFINE(HAVE_ASPRINTF,, [Define if you have the `asprintf' function.]),
+-  AC_LIBOBJ(vasprintf))
++  [AC_LIBOBJ(vasprintf)])
+ AC_CHECK_FUNC(vasprintf,
+   AC_DEFINE(HAVE_VASPRINTF,, [Define if you have the `vasprintf' function.]),
+-  AC_LIBOBJ(vasprintf))
++  [AC_LIBOBJ(vasprintf)])
+ AC_SUBST(PRINT_VASPRINTF)
+ AC_CHECK_FUNC(getopt_long,
+   AC_DEFINE(HAVE_GETOPT_LONG,, [Define if you have the `getopt_long' function.]),
+-  AC_LIBOBJ(getopt)
+-  AC_LIBOBJ(getopt1))
++  [AC_LIBOBJ(getopt)
++  AC_LIBOBJ(getopt1)])
+ 
+ 
+ dnl Define what has to be built
+@@ -719,13 +719,6 @@
+ fi
+ AM_CONDITIONAL(BUILD_MODULES, test x$MODULE = xtrue)
+ 
+-dnl Define LTLIBOBJS
+-AC_CONFIG_COMMANDS_PRE(
+-[LTLIBOBJS=`echo "$LIB@&t@OBJS" | sed 's/\.o/.lo/g'`
+-AC_SUBST(LTLIBOBJS)
+-LTALLOCA=`echo "$ALLOCA" | sed 's/\.o/.lo/g'`
+-AC_SUBST(LTALLOCA)])
+-
+ dnl Definitions
+ AC_DEFINE_UNQUOTED(CUPS_DATADIR, "${cups_conf_datadir}/share/cups", [CUPS data directory.])
+ AC_DEFINE_UNQUOTED(CUPS_PPD_PS_LEVEL, ${CUPS_PPD_PS_LEVEL}, [CUPS PPD PostScript level])
+--- gimp-print-4.3.25/lib/Makefile.am.orig	2003-01-05 01:08:39.000000000 +0100
++++ gimp-print-4.3.25/lib/Makefile.am	2003-12-28 21:43:55.775721400 +0100
+@@ -30,7 +30,7 @@
+ 
+ libprintut_la_SOURCES =
+ 
+-libprintut_la_LIBADD = @LTALLOCA@ @LTLIBOBJS@
++libprintut_la_LIBADD = @LTLIBOBJS@
+ 
+ 
+ noinst_HEADERS = getopt.h libprintut.h pathmax.h xmalloc.h
