@@ -8,20 +8,19 @@ Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
-Version:	4.2.6
-Release:	2
+Version:	4.2.7
+Release:	1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
-# Source0-md5:	c7aae843d6a705cb8983b2f06c1f7819
+# Source0-md5:	766be49f44a6a682d857e5aefec414d4
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-usb.patch
 Patch2:		%{name}-info_and_pdf_only.patch
 Patch3:		%{name}-opt.patch
 Patch4:		%{name}-nolibs.patch
-Patch5:		%{name}-am18.patch
-Patch6:		%{name}-genppd-nostatic.patch
-Patch7:		%{name}-locale-names.patch
+Patch5:		%{name}-genppd-nostatic.patch
+Patch6:		%{name}-locale-names.patch
 URL:		http://gimp-print.sf.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -214,9 +213,9 @@ Sterownik IJS Gimp-print dla GhostScript.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
 
-mv -f po/{no,nb}.po
+# STP_PATH_GIMP
+tail -n +4372 aclocal.m4 > scripts/stp-gimp.m4
 
 %build
 rm -f scripts/{gettext,libtool}.m4
