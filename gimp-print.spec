@@ -63,7 +63,7 @@ permite ser usado em qualquer outra impressora.
 
 %package lib
 Summary:	gimp-print library
-Summary(pl):	Biblioteka Gimp-print
+Summary(pl):	Biblioteka gimp-print
 Summary(pt_BR):	Bibliotecas dinâmicas para impressão de alta qualidade
 Group:		Libraries
 
@@ -159,7 +159,7 @@ Requires:	cups >= 1.1.9
 Gimp-print as CUPS plugin.
 
 %description cups -l pl
-Plugin gimp-print dla CUPS.
+Wtyczka gimp-print dla CUPS.
 
 %description cups -l pt_BR
 Este pacote contém os arquivos ppd para se usar o driver Gimp-Print
@@ -177,14 +177,18 @@ Gimp-print samples.
 Przyk³ady dla Gimp-print.
 
 %package ijs
-Summary:	Gimp-print IJS driver for GhostScript
+Summary:	gimp-print IJS driver for GhostScript
+Summary(pl):	Sterownik IJS Gimp-print dla GhostScript
 Group:		Applications/Printing
 
 %description ijs
-Gimp-print IJS driver for GhostScript
+Gimp-print IJS driver for GhostScript.
 
-%prep 
-%setup  -q 
+%description ijs -l pl
+Sterownik IJS Gimp-print dla GhostScript.
+
+%prep
+%setup  -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
