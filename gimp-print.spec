@@ -3,11 +3,17 @@
 # _without_cups		- without CUPS subpackage
 # _without_gimp
 #
+# TODO:
+# - port info_and_pdf_only.patch and install documentation in correct place.
+# - port install.patch (afect only gimp plugin)
+# - port info.patch (if needed)
+# - think about not including PPDs in package and allow generation by cups-genppd
+#
 Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
-Version:	4.3.4
+Version:	4.3.5
 Release:	0.1
 License:	GPL
 Group:		Applications/Printing
@@ -186,21 +192,26 @@ Gimp-print IJS driver for GhostScript
 
 %prep 
 %setup  -q 
-%patch0 -p1
-%patch1 -p1
+#%patch0 -p1
+#%patch1 -p1
 %patch2 -p1
-%patch3 -p1
+#%patch3 -p1
 
 %build
-%configure2_13 \
-	%{!?_without_cups:--with-cups} \
-	--with-gimp \
+%configure \
+	%{?debug:--enable-debug} \
+	--with%{?_without_cups:out}-cups \
+	--with%{?_without_gimp:out}-gimp \
 	--enable-escputil \
 	--enable-libgimpprint \
+	--enable-translated-cups-ppds \
+	--enable-cups-level3-ppds \
+	--enable-lexmarkutil \
 	--with-ijs \
 	--without-foomatic \
-	--with-samples \
-	--with-user-guide \
+	--enable-samples \
+	--enable-user-guide \
+	--enable-static \
 	--without-ghost
 %{__make}
 
@@ -210,11 +221,13 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/doc doc-installed
-mv -f doc-installed/manual-html doc-installed/manual
-mv -f doc-installed/html doc-installed/user-guide
+#mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/doc doc-installed
+#mv -f doc-installed/manual-html doc-installed/manual
+#mv -f doc-installed/html doc-installed/user-guide
 mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}
+rm -f $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
+echo '.so cups-genppdconfig.8' > $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
 
 %find_lang %{name}
 
@@ -230,14 +243,17 @@ rm -rf $RPM_BUILD_ROOT
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
+%if %{?!_without_gimp:1}%{?_without_gimp:0}
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %(gimptool --gimpplugindir)/plug-ins/*
+%endif
 
 %files lib -f %{name}.lang
 %defattr(644,root,root,755)
-%doc doc-installed/*.pdf doc-installed/manual doc/FAQ.html AUTHORS README NEWS ChangeLog
-%attr(755,root,root) %{_libdir}/libgimpprint.so.*.*.*
+#%%doc doc-installed/*.pdf doc-installed/manual 
+%doc doc/FAQ.html AUTHORS README NEWS ChangeLog
+%attr(755,root,root) %{_libdir}/libgimpprint-*.so
 
 %files devel
 %defattr(644,root,root,755)
@@ -246,6 +262,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gimpprint-config
 %{_includedir}/gimp-print
 %{_aclocaldir}/gimpprint.m4
+%{_pkgconfigdir}/*
 %{_mandir}/man1/gimpprint-config.1*
 %{_mandir}/man3/gimpprint.3*
 %{_datadir}/info/*info*
@@ -264,18 +281,25 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc src/cups/README src/cups/command.txt src/cups/commands
 %{_sysconfdir}/cups/command.types
-%attr(755,root,root) %{_bindir}/cups-calibrate
+%attr(755,root,root) %{_bindir}/cups-*
 %{_datadir}/cups/calibrate.ppm
-%{_datadir}/cups/model/C/*
-%{_datadir}/cups/model/en_GB/*
-%lang(da) %{_datadir}/cups/model/da/*
-%lang(fr) %{_datadir}/cups/model/fr/*
-%lang(no) %{_datadir}/cups/model/no/*
-%lang(pl) %{_datadir}/cups/model/pl/*
-%lang(sv) %{_datadir}/cups/model/sv/*
+#%{_datadir}/cups/model/C/*
+%{_datadir}/cups/model/gimp-print/en/*
+%lang(en_GB) %{_datadir}/cups/model/gimp-print/en_GB/*
+%lang(da) %{_datadir}/cups/model/gimp-print/da/*
+%lang(de) %{_datadir}/cups/model/gimp-print/de/*
+%lang(el) %{_datadir}/cups/model/gimp-print/el/*
+%lang(es) %{_datadir}/cups/model/gimp-print/es/*
+%lang(fr) %{_datadir}/cups/model/gimp-print/fr/*
+%lang(nl) %{_datadir}/cups/model/gimp-print/nl/*
+%lang(no) %{_datadir}/cups/model/gimp-print/no/*
+%lang(pl) %{_datadir}/cups/model/gimp-print/pl/*
+%lang(pt) %{_datadir}/cups/model/gimp-print/pt/*
+%lang(sk) %{_datadir}/cups/model/gimp-print/sk/*
+%lang(sv) %{_datadir}/cups/model/gimp-print/sv/*
 %attr(755,root,root) %{_libdir}/cups/backend/*
 %attr(755,root,root) %{_libdir}/cups/filter/*
-%{_mandir}/man8/cups-calibrate.8*
+%{_mandir}/man8/*cups*.8*
 %endif
 
 %files samples
