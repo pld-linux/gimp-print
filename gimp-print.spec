@@ -25,6 +25,7 @@ BuildRequires:	automake
 %{!?_without_cups:BuildRequires:	cups-devel >= 1.1.9}
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
+BuildRequires:	gettext-devel
 %{!?_without_ijs:BuildRequires:	ghostscript-ijs-devel}
 %{?_with_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
 %{?_with_gimp:BuildRequires:	gimp-devel < 1.3}
@@ -209,6 +210,7 @@ Sterownik IJS Gimp-print dla GhostScript.
 
 %build
 rm -f scripts/{gettext,libtool}.m4
+%{__gettextize}
 %{__libtoolize}
 %{__aclocal} -I scripts -I src/main
 %{__autoconf}
