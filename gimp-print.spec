@@ -16,16 +16,17 @@ Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
 Version:	5.0.0
-%define	bver	beta1
+%define	bver	beta2
 Release:	0.%{bver}.1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}-%{bver}.tar.bz2
-# Source0-md5:	67d211692385458602400b65b34cefe8
+# Source0-md5:	7aec697e41b33ba55534c7745bc2785b
 #Patch0:		%{name}-info.patch
 Patch0:		%{name}-usb.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-locale-names.patch
+Patch3:		%{name}-static.patch
 URL:		http://gimp-print.sf.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -284,6 +285,7 @@ Dane foomatic dla sterownika IJS gimp-print.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 mv -f po/{no,nb}.po
 
