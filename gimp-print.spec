@@ -2,16 +2,15 @@
 # Conditional build:
 # _without_cups		- without CUPS subpackage
 #
-%define		_pre	pre4
 Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
 Version:	4.2.1
-Release:	0.1.%{_pre}
+Release:	1
 License:	GPL
 Group:		Applications/Printing
-Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}-%{_pre}.tgz
+Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-info.patch
 Patch2:		%{name}-usb.patch
@@ -184,7 +183,7 @@ Group:		Applications/Printing
 Gimp-print IJS driver for GhostScript
 
 %prep 
-%setup  -q -n %{name}-%{version}-%{_pre}
+%setup  -q 
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
