@@ -16,16 +16,17 @@ Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
 Version:	5.0.0
-%define	bver	alpha1
+%define	bver	alpha3
 Release:	0.%{bver}.1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}-%{bver}.tar.bz2
-# Source0-md5:	71ddae93313403076095ac5bd85f8f1f
-Patch0:		%{name}-info.patch
-Patch1:		%{name}-usb.patch
-Patch2:		%{name}-opt.patch
-Patch3:		%{name}-genppd-nostatic.patch
+# Source0-md5:	0ff9610c3dc6cae5793d8eedeea083dc
+#Patch0:		%{name}-info.patch
+Patch0:		%{name}-usb.patch
+Patch1:		%{name}-opt.patch
+Patch2:		%{name}-genppd-nostatic.patch
+Patch3:		%{name}-locale-names.patch
 URL:		http://gimp-print.sf.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -284,6 +285,8 @@ Dane foomatic dla sterownika IJS gimp-print.
 %patch2 -p1
 %patch3 -p1
 
+mv -f po/{no,nb}.po
+
 # hack for gimp 1.3, but not sufficient to build
 # build fix is easy (s/\(GimpRunMode\)Type/\1/ in print.c), but only segfaults then
 # only way to go is port gimp-print to GTK+2/GLIB2
@@ -353,12 +356,6 @@ rm -rf $RPM_BUILD_ROOT
 %post	-n libgimpprintui -p /sbin/ldconfig
 %postun	-n libgimpprintui -p /sbin/ldconfig
 
-%post -n libgimpprint-devel
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-
-%postun -n libgimpprint-devel
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-
 %if %{with gimp}
 %files
 %defattr(644,root,root,755)
@@ -367,7 +364,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgimpprint -f %{name}.lang
 %defattr(644,root,root,755)
-%doc doc-installed/gimpprint.ps doc-installed/html doc-installed/users-guide.pdf
+%doc doc-installed/gimpprint.pdf doc-installed/html doc-installed/users-guide.pdf
 %doc doc/FAQ.html AUTHORS README NEWS ChangeLog
 %attr(755,root,root) %{_libdir}/libgimpprint-*.so
 %dir %{_libdir}/%{name}
@@ -380,13 +377,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgimpprint-devel
 %defattr(644,root,root,755)
-%doc doc-installed/developer-html
+%doc doc-installed/reference-html
 %attr(755,root,root) %{_libdir}/libgimpprint.so
 %{_libdir}/libgimpprint.la
 %{_includedir}/gimp-print
 %{_pkgconfigdir}/gimpprint.pc
 %{_mandir}/man3/gimpprint.3*
-%{_infodir}/*info*
 
 %if %{with static_libs}
 %files -n libgimpprint-static
