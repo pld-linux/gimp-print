@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_without	cups		# don't build CUPS plugin
-%bcond_with	gimp		# build GIMP plugin subpackage
+%bcond_without	gimp		# build GIMP plugin subpackage
 %bcond_without	ijs		# don't build IJS server for Ghostscript
 %bcond_without	foomatic	# don't generate foomatic data
 %bcond_without	static_libs	# don't build static libraries
@@ -16,17 +16,16 @@ Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
 Version:	5.0.0
-%define	bver	alpha3
+%define	bver	beta1
 Release:	0.%{bver}.1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}-%{bver}.tar.bz2
-# Source0-md5:	0ff9610c3dc6cae5793d8eedeea083dc
+# Source0-md5:	67d211692385458602400b65b34cefe8
 #Patch0:		%{name}-info.patch
 Patch0:		%{name}-usb.patch
 Patch1:		%{name}-opt.patch
-Patch2:		%{name}-genppd-nostatic.patch
-Patch3:		%{name}-locale-names.patch
+Patch2:		%{name}-locale-names.patch
 URL:		http://gimp-print.sf.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -36,10 +35,10 @@ BuildRequires:	docbook-utils
 %{?with_foomatic:BuildRequires:	foomatic-db-engine >= 2.9.1}
 BuildRequires:	gettext-autopoint
 %{?with_ijs:BuildRequires:	ghostscript-ijs-devel}
-%{?with_gimp:BuildRequires:	gimp-devel <  1:1.3.0}
-%{?with_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
-BuildRequires:	gtk+-devel >= 1.2.0
+%{?with_gimp:BuildRequires:	gimp-devel >= 1:2.0.0}
+BuildRequires:	gtk+2-devel >= 2.0.0
 BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
@@ -47,6 +46,8 @@ Requires:	gimp >= 1:1.2.2-5
 Requires:	libgimpprint = %{version}-%{release}
 Conflicts:	gimp > 1:1.3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		gimpplugindir	%(gimptool --gimpplugindir)/plug-ins
 
 %description
 Gimp-Print is a collection of very high quality printer drivers for
@@ -283,16 +284,10 @@ Dane foomatic dla sterownika IJS gimp-print.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 mv -f po/{no,nb}.po
 
-# hack for gimp 1.3, but not sufficient to build
-# build fix is easy (s/\(GimpRunMode\)Type/\1/ in print.c), but only segfaults then
-# only way to go is port gimp-print to GTK+2/GLIB2
-#if [ -f %{_aclocaldir}/gimp-1.4.m4 ]; then
-#	echo 'AC_DEFUN([AM_PATH_GIMP],AM_PATH_GIMP_1_4)' > m4/gimp14.m4
-#fi
+echo 'AC_DEFUN([AM_PATH_GTK],[$3])' > m4/gtk.m4
 
 %build
 rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
@@ -300,15 +295,14 @@ rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
 %{__libtoolize}
 %{__autopoint}
 %{__aclocal} -I m4 -I m4extra
-touch src/main/gimpprint.pc.in \
-	src/libgimpprintui/gimpprint-ui.pc.in
 %{__automake}
 %{__autoconf}
 
 %configure \
 	%{?debug:--enable-debug} \
 	--with%{!?with_cups:out}-cups \
-	--with%{!?with_gimp:out}-gimp \
+	--without-gimp \
+	--with%{!?with_gimp:out}-gimp2 \
 	--with%{!?with_ijs:out}-ijs \
 	--with%{!?with_foomatic:out}-foomatic \
 	%{?with_static_libs:--enable-static} \
@@ -316,6 +310,8 @@ touch src/main/gimpprint.pc.in \
 	--enable-escputil \
 	--enable-libgimpprint \
 	%{!?with_cups:--disable-cups-ppds} \
+	--disable-libgimpprintui \
+	--disable-static-genppd \
 	--disable-translated-cups-ppds \
 	--enable-cups-level3-ppds \
 	--enable-lexmarkutil \
@@ -331,7 +327,10 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+%if %{with gimp}
+	gimp_plug_indir=%{gimpplugindir}
+%endif
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/gimp-print/doc doc-installed
 #mv -f doc-installed/manual-html doc-installed/manual
@@ -353,13 +352,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %post	-n libgimpprint -p /sbin/ldconfig
 %postun	-n libgimpprint -p /sbin/ldconfig
+
 %post	-n libgimpprintui -p /sbin/ldconfig
 %postun	-n libgimpprintui -p /sbin/ldconfig
 
 %if %{with gimp}
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %(gimptool --gimpplugindir)/plug-ins/*
+%attr(755,root,root) %{gimpplugindir}/*
 %endif
 
 %files -n libgimpprint -f %{name}.lang
@@ -392,19 +392,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgimpprintui
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgimpprintui-*.so
+%attr(755,root,root) %{_libdir}/libgimpprintui2-*.so
 
 %files -n libgimpprintui-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgimpprintui.so
-%{_libdir}/libgimpprintui.la
-%{_includedir}/gimp-print-ui
-%{_pkgconfigdir}/gimpprint-ui.pc
+%attr(755,root,root) %{_libdir}/libgimpprintui2.so
+%{_libdir}/libgimpprintui2.la
+%{_includedir}/gimp-print-ui2
+%{_pkgconfigdir}/gimpprintui2.pc
 
 %if %{with static_libs}
 %files -n libgimpprintui-static
 %defattr(644,root,root,755)
-%{_libdir}/libgimpprintui.a
+%{_libdir}/libgimpprintui2.a
 %endif
 
 %files -n escputil
