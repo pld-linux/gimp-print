@@ -1,11 +1,15 @@
-Summary:	collection of high-quality printer drivers
+Summary:	Collection of high-quality printer drivers
 Name:		gimp-print
 Version:	4.2.0
 Release:	0.1
-Epoch:		0
 License:	GPL
 Group:		Applications/Printing
-Source0:	%{name}-%{version}.tar.gz
+Group(de):	Applikationen/Drucken
+Group(es):	Aplicaciones/ImpresiÛn
+Group(fr):	Applications/Impression
+Group(pl):	Aplikacje/Drukowanie
+Group(pt):	AplicaÁıes/Impress„o
+Source0:	http://prdownloads.sourceforge.net/gimp-print/print-%{version}.tar.gz
 Patch0:		%{name}-install.patch
 URL:		http://gimp-print.sf.net/
 BuildRequires:	gimp-devel >= 1:1.2.2-4
@@ -19,101 +23,152 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Gimp-Print is a collection of very high quality printer drivers for
-UNIX/Linux. The goal of this project is uncompromising print quality and
-robustness. Included with this package is the Print plugin for the GIMP
-(hence the name), a CUPS driver, and a driver for Ghostscript that may be
-compiled into that package. This driver package is Foomatic-compatible to
-enable plug and play with many print spoolers. In addition, various printer
-maintenance utilities are included.  Many users report that the quality of
-Gimp-Print on high end Epson Stylus printers matches or exceeds the quality
-of the drivers supplied for Windows and Macintosh.
+UNIX/Linux. The goal of this project is uncompromising print quality
+and robustness. Included with this package is the Print plugin for the
+GIMP (hence the name), a CUPS driver, and a driver for Ghostscript
+that may be compiled into that package. This driver package is
+Foomatic-compatible to enable plug and play with many print spoolers.
+In addition, various printer maintenance utilities are included. Many
+users report that the quality of Gimp-Print on high end Epson Stylus
+printers matches or exceeds the quality of the drivers supplied for
+Windows and Macintosh.
 
 %description -l pl
-Gimp-Print to zbiÛr bardzo wysokiej jako∂ci sterownikÛw do drukarek dla
-systemÛw UNIX/Linux. Celem tego projektu jest jak najlepsza jako∂Ê wydruku.
-Do≥±czone do tego pakietu s±: wtyczka dla programu GIMP (st±d nazwa),
-sterownik CUPS i sterownik Ghostscriptu. Sterownik umoøliwia bezpo∂redni±
-wspÛ≥pracÍ z wieloma kolejkami wydruku. Dodatkowo do≥±czonych jest wiele 
-programÛw do obs≥ugi drukarki. Wielu uøytkownikÛw twierdzi ze jako∂Ê
-wydrukÛw na najlepszych drukarkach Epson Stylus dorÛwnuje albo nawet
-przerasta jako∂ci± to co jest oferowane przez sterowniki dla Windows i MacOS
+Gimp-Print to zbiÛr bardzo wysokiej jako∂ci sterownikÛw do drukarek
+dla systemÛw UNIX/Linux. Celem tego projektu jest jak najlepsza jako∂Ê
+wydruku. Do≥±czone do tego pakietu s±: wtyczka dla programu GIMP (st±d
+nazwa), sterownik CUPS i sterownik Ghostscriptu. Sterownik umoøliwia
+bezpo∂redni± wspÛ≥pracÍ z wieloma kolejkami wydruku. Dodatkowo
+do≥±czonych jest wiele programÛw do obs≥ugi drukarki. Wielu
+uøytkownikÛw twierdzi ze jako∂Ê wydrukÛw na najlepszych drukarkach
+Epson Stylus dorÛwnuje albo nawet przerasta jako∂ci± to co jest
+oferowane przez sterowniki dla Windows i MacOS
 
 %package lib
-Summary: 	gimp-print library
+Summary:	gimp-print library
 Summary(pl):	Biblioteka Gimp-print
-Group: 		Libraries
+Group:		Libraries
+Group(de):	Bibliotheken
+Group(es):	Bibliotecas
+Group(fr):	Librairies
+Group(pl):	Biblioteki
+Group(pt):	Bibliotecas
+Group(pt_BR):	Bibliotecas
+Group(ru):	‚…¬Ã…œ‘≈À…
+Group(uk):	‚¶¬Ã¶œ‘≈À…
 
 %description lib
-Gimp-print library
+Gimp-print library.
 
 %description -l pl
-Biblioteka Gimp-print
+Biblioteka Gimp-print.
 
 %package devel
 Summary:	gimp-print development tools
 Group:		Development/Libraries
-Requires:	%{name}-lib = %{epoch}:%{version}-%{release}
+Group(de):	Entwicklung/Bibliotheken
+Group(es):	Desarrollo/Bibliotecas
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(pt):	Desenvolvimento/Bibliotecas
+Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
+Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
+Requires:	%{name}-lib = %{version}-%{release}
 
 %description devel
-Gimp-print development tools and headers
+Gimp-print development tools and headers.
 
 %description -l pl devel
-Nag≥Ûwki i narzÍdzia deweloperskie dla Gimp-print
+Nag≥Ûwki i narzÍdzia deweloperskie dla Gimp-print.
 
 %package static
 Summary:	gimp-print static libraries
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Group(de):	Entwicklung/Bibliotheken
+Group(es):	Desarrollo/Bibliotecas
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(pt):	Desenvolvimento/Bibliotecas
+Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
+Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Gimp-print static libraries
+Gimp-print static libraries.
 
 %description -l pl
-Biblioteki statyczne Gimp-print
+Biblioteki statyczne Gimp-print.
 
 %package -n escputil
 Summary:	Tool for Epson ink printers
 Group:		Applications/Printing
+Group(de):	Applikationen/Drucken
+Group(es):	Aplicaciones/ImpresiÛn
+Group(fr):	Applications/Impression
+Group(pl):	Aplikacje/Drukowanie
+Group(pt):	AplicaÁıes/Impress„o
 
 %description -n escputil
-Tool for Epson ink printers
+Tool for Epson ink printers.
 
 %description -l pl -n escputil
-NarzÍdzie dla drukarek atramentowych Epson
+NarzÍdzie dla drukarek atramentowych Epson.
 
 %package cups
 Summary:	gimp-print as CUPS plugin
 Group:		Applications/Printing
+Group(de):	Applikationen/Drucken
+Group(es):	Aplicaciones/ImpresiÛn
+Group(fr):	Applications/Impression
+Group(pl):	Aplikacje/Drukowanie
+Group(pt):	AplicaÁıes/Impress„o
 
 %description cups
-Gimp-print as CUPS plugin
+Gimp-print as CUPS plugin.
 
 %description -l pl cups
-Plugin gimp-print dla CUPS
+Plugin gimp-print dla CUPS.
 
 %package samples
 Summary:	gimp-print samples
 Group:		Applications/Printing
+Group(de):	Applikationen/Drucken
+Group(es):	Aplicaciones/ImpresiÛn
+Group(fr):	Applications/Impression
+Group(pl):	Aplikacje/Drukowanie
+Group(pt):	AplicaÁıes/Impress„o
 
 %description samples
-Gimp-print samples
+Gimp-print samples.
 
 %description -l pl samples
-Przyk≥ady dla Gimp-print
+Przyk≥ady dla Gimp-print.
 
 %package doc-html
 Summary:	gimp-print docs as HTML
 Group:		Applications/Printing
+Group(de):	Applikationen/Drucken
+Group(es):	Aplicaciones/ImpresiÛn
+Group(fr):	Applications/Impression
+Group(pl):	Aplikacje/Drukowanie
+Group(pt):	AplicaÁıes/Impress„o
 
 %description doc-html
 Gimp-print documentation in HTML
 
 %description -l pl doc-html
 Dokumentacja do Gimp-print w HTML'u
- 
+
 %package doc-pdf
 Summary:	gimp-print docs as PDF
 Group:		Applications/Printing
+Group(de):	Applikationen/Drucken
+Group(es):	Aplicaciones/ImpresiÛn
+Group(fr):	Applications/Impression
+Group(pl):	Aplikacje/Drukowanie
+Group(pt):	AplicaÁıes/Impress„o
 
 %description doc-pdf
 Gimp-print documentation in PDF
@@ -124,6 +179,11 @@ Dokumentacja Gimp-Print w PDF'ie
 %package doc-ps
 Summary:	gimp-print docs as PS
 Group:		Applications/Printing
+Group(de):	Applikationen/Drucken
+Group(es):	Aplicaciones/ImpresiÛn
+Group(fr):	Applications/Impression
+Group(pl):	Aplikacje/Drukowanie
+Group(pt):	AplicaÁıes/Impress„o
 
 %description doc-ps
 Gimp-print documentation in PostScript
@@ -134,12 +194,17 @@ Dokumentacja Gimp-Print w PostScripcie
 %package manual-html
 Summary:	gimp-print manual in HTML
 Group:		Applications/Printing
+Group(de):	Applikationen/Drucken
+Group(es):	Aplicaciones/ImpresiÛn
+Group(fr):	Applications/Impression
+Group(pl):	Aplikacje/Drukowanie
+Group(pt):	AplicaÁıes/Impress„o
 
 %description manual-html
 Gimp-print manual in HTML
 
 %description -l pl manual-html
-Manual Gimp-Print w HTML'u 
+Manual Gimp-Print w HTML'u
 
 %prep
 %setup  -q
@@ -158,13 +223,13 @@ Manual Gimp-Print w HTML'u
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/%{_examplesdir}
+install -d $RPM_BUILD_ROOT%{_examplesdir}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 mv $RPM_BUILD_ROOT%{_datadir}/gimp-print/doc doc-installed
 mv $RPM_BUILD_ROOT%{_datadir}/gimp-print/samples \
-	$RPM_BUILD_ROOT/%{_examplesdir}/%{name}
+	$RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
 gzip -9nf README ChangeLog
 
@@ -193,13 +258,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgimpprint.so
+%attr(755,root,root) %{_libdir}/libgimpprint.la
+%attr(755,root,root) %{_bindir}/gimpprint-config
 %{_includedir}/gimp-print
 %{_aclocaldir}/gimpprint.m4
-%{_mandir}/man1/gimpprint-config.1*z
+%{_mandir}/man1/gimpprint-config.1*
 %{_mandir}/man3/gimpprint.3*
-%{_libdir}/libgimpprint.so
-%{_libdir}/libgimpprint.la
-%attr(755,root,root) %{_bindir}/gimpprint-config
 
 %files static
 %defattr(644,root,root,755)
@@ -207,14 +272,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n escputil
 %defattr(644,root,root,755)
-%{_mandir}/man1/escputil.1.gz
+%{_mandir}/man1/escputil.1*
 %attr(755,root,root) %{_bindir}/escputil
-
 
 %files cups
 %defattr(644,root,root,755)
-%{_mandir}/man8/cups-calibrate.8.gz
-
+%{_sysconfdir}/cups/command.types
+%attr(755,root,root) %{_bindir}/cups-calibrate
 %{_datadir}/cups/calibrate.ppm
 %{_datadir}/cups/model/C/*
 %lang(da) %{_datadir}/cups/model/da/*
@@ -228,10 +292,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/cups/filter/rastertoprinter
 %{_libdir}/cups/filter/commandtoepson
 %{_libdir}/cups/filter/commandtocanon
-%attr(755,root,root) %{_bindir}/cups-calibrate
-%{_sysconfdir}/cups/command.types
-
-
+%{_mandir}/man8/cups-calibrate.8*
 
 %files samples
 %defattr(644,root,root,755)
