@@ -2,6 +2,7 @@
 # Conditional build:
 # _without_cups		- without CUPS subpackage
 # _without_gimp		- without GIMP plugin subpackage
+# _without_ijs		- without IJS server for Ghostscript
 #
 # TODO:
 # - port info_and_pdf_only.patch and install documentation in correct place.
@@ -29,7 +30,7 @@ BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
-BuildRequires:	ghostscript-ijs-devel
+%{!?_without_ijs:BuildRequires:	ghostscript-ijs-devel}
 Requires:	gimp >= 1:1.2.2-5
 Requires:	%{name}-lib = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -207,12 +208,12 @@ Sterownik IJS Gimp-print dla GhostScript.
 	%{?debug:--enable-debug} \
 	--with%{?_without_cups:out}-cups \
 	--with%{?_without_gimp:out}-gimp \
+	--with%{?_without_ijs:out}-ijs \
 	--enable-escputil \
 	--enable-libgimpprint \
 	--enable-translated-cups-ppds \
 	--enable-cups-level3-ppds \
 	--enable-lexmarkutil \
-	--with-ijs \
 	--without-foomatic \
 	--enable-samples \
 	--enable-user-guide \
@@ -311,6 +312,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}
 
+%if %{?_without_ijs:0}%{!?_without_ijs:1}
 %files ijs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ijsgimpprint
+%endif
