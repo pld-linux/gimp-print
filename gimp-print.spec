@@ -146,66 +146,6 @@ Gimp-print samples.
 %description -l pl samples
 Przyk³ady dla Gimp-print.
 
-%package doc-html
-Summary:	gimp-print docs as HTML
-Group:		Applications/Printing
-Group(de):	Applikationen/Drucken
-Group(es):	Aplicaciones/Impresión
-Group(fr):	Applications/Impression
-Group(pl):	Aplikacje/Drukowanie
-Group(pt):	Aplicações/Impressão
-
-%description doc-html
-Gimp-print documentation in HTML
-
-%description -l pl doc-html
-Dokumentacja do Gimp-print w HTML'u
-
-%package doc-pdf
-Summary:	gimp-print docs as PDF
-Group:		Applications/Printing
-Group(de):	Applikationen/Drucken
-Group(es):	Aplicaciones/Impresión
-Group(fr):	Applications/Impression
-Group(pl):	Aplikacje/Drukowanie
-Group(pt):	Aplicações/Impressão
-
-%description doc-pdf
-Gimp-print documentation in PDF
-
-%description -l pl doc-pdf
-Dokumentacja Gimp-Print w PDF'ie
-
-%package doc-ps
-Summary:	gimp-print docs as PS
-Group:		Applications/Printing
-Group(de):	Applikationen/Drucken
-Group(es):	Aplicaciones/Impresión
-Group(fr):	Applications/Impression
-Group(pl):	Aplikacje/Drukowanie
-Group(pt):	Aplicações/Impressão
-
-%description doc-ps
-Gimp-print documentation in PostScript
-
-%description -l pl doc-ps
-Dokumentacja Gimp-Print w PostScripcie
-
-%package manual-html
-Summary:	gimp-print manual in HTML
-Group:		Applications/Printing
-Group(de):	Applikationen/Drucken
-Group(es):	Aplicaciones/Impresión
-Group(fr):	Applications/Impression
-Group(pl):	Aplikacje/Drukowanie
-Group(pt):	Aplicações/Impressão
-
-%description manual-html
-Gimp-print manual in HTML
-
-%description -l pl manual-html
-Manual Gimp-Print w HTML'u
-
 %prep
 %setup  -q
 %patch0 -p1
@@ -228,24 +168,27 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 mv $RPM_BUILD_ROOT%{_datadir}/gimp-print/doc doc-installed
+mv doc-installed/manual-html doc-installed/manual
+mv doc-installed/html doc-instlled/user-guide
 mv $RPM_BUILD_ROOT%{_datadir}/gimp-print/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
-gzip -9nf README ChangeLog
+gzip -9nf README ChangeLog AUTHORS README NEWS
 
 %find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post lib 
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-/sbin/ldconfig
+%post lib -p /sbin/ldconfig
 
-%postun lib 
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-/sbin/ldconfig
+%postun lib -p /sbin/ldconfig
 
+%post devel
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+
+%postun devel
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %files 
 %defattr(644,root,root,755)
@@ -253,8 +196,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files lib -f %{name}.lang
 %defattr(644,root,root,755)
+%doc doc-installed/user-guide doc-installed/manual doc/FAQ.html AUTHORS.gz README.gz NEWS.gz ChangeLog.gz
 %attr(755,root,root) %{_libdir}/libgimpprint.so.1.0.0
-%{_datadir}/info/*info*
 
 %files devel
 %defattr(644,root,root,755)
@@ -265,6 +208,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_aclocaldir}/gimpprint.m4
 %{_mandir}/man1/gimpprint-config.1*
 %{_mandir}/man3/gimpprint.3*
+%{_datadir}/info/*info*
 
 %files static
 %defattr(644,root,root,755)
@@ -297,19 +241,3 @@ rm -rf $RPM_BUILD_ROOT
 %files samples
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}
-
-%files doc-html
-%defattr(644,root,root,755)
-%doc doc-installed/html
-
-%files doc-pdf
-%defattr(644,root,root,755)
-%doc doc-installed/users-guide.pdf
-
-%files manual-html
-%defattr(644,root,root,755)
-%doc doc-installed/manual-html
-
-%files doc-ps
-%defattr(644,root,root,755)
-%doc doc-installed/gimpprint.ps
