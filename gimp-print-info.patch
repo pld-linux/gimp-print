@@ -1,5 +1,5 @@
---- gimp-print-4.3.8/doc/developer/gimpprint.texi.orig	Sat Dec  1 16:07:50 2001
-+++ gimp-print-4.3.8/doc/developer/gimpprint.texi	Sat Feb 22 00:34:44 2003
+--- gimp-print-4.3.25/doc/developer/gimpprint.texi.orig	2003-11-23 04:52:46.000000000 +0100
++++ gimp-print-4.3.25/doc/developer/gimpprint.texi	2003-12-28 21:34:03.044830192 +0100
 @@ -20,9 +20,9 @@
  @set BUGADDR @email{gimp-print-devel@@lists.sourceforge.net}
  @set MAILLIST @email{gimp-print-devel@@lists.sourceforge.net}
@@ -7,8 +7,8 @@
 -@dircategory Libraries
 +@dircategory Printing Tools:
  @direntry
--* GIMP-Print: (gimpprint).      print plugin for the GIMP, and printing library
-+* GIMP-Print: (gimpprint).		Print plugin for the GIMP and library
+-* Gimp-Print: (gimpprint).      print plugin for the GIMP, and printing library
++* Gimp-Print: (gimpprint).		Print plugin for the GIMP and library
  @end direntry
  
  @ifinfo
