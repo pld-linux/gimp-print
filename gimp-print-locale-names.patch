@@ -1,11 +1,11 @@
---- gimp-print-5.0.0-alpha3/configure.ac.orig	2004-05-15 13:10:51.191710000 +0200
-+++ gimp-print-5.0.0-alpha3/configure.ac	2004-05-15 13:24:14.509588032 +0200
-@@ -136,7 +136,7 @@
- AM_CONFIG_HEADER([config.h])
+--- gimp-print-4.2.6/configure.in.orig	2004-05-15 14:06:21.911364560 +0200
++++ gimp-print-4.2.6/configure.in	2004-05-15 14:06:44.132986360 +0200
+@@ -94,7 +94,7 @@
+ AM_CONFIG_HEADER(config.h)
  
  dnl Available languages (translations)
--ALL_LINGUAS="cs da de el en_GB es fr ja nl no pl pt sk sv"
-+ALL_LINGUAS="cs da de el en_GB es fr ja nl nb pl pt sk sv"
+-ALL_LINGUAS="en_GB sv no fr da pl sk el nl es pt de ja cs"
++ALL_LINGUAS="en_GB sv nb fr da pl sk el nl es pt de ja cs"
  AC_SUBST(ALL_LINGUAS)
  
- dnl Set up libtool scripts.
+ dnl Compiler options and definitions
