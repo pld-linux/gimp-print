@@ -1,7 +1,7 @@
 #
 # Conditional build:
 # _without_cups     # without CUPS subpackage
-# _without_gimp     # without GIMP plugin subpackage
+# _with_gimp        # with GIMP plugin subpackage
 # _without_ijs      # without IJS server for Ghostscript
 # _without_foomatic # don't generate foomatic data
 # _with_static      # enable building static library
@@ -32,8 +32,8 @@ BuildRequires:	docbook-utils
 %{!?_without_foomatic:BuildRequires:	foomatic-db-engine >= 2.9.1}
 BuildRequires:	gettext-autopoint
 %{!?_without_ijs:BuildRequires:	ghostscript-ijs-devel}
-%{!?_without_gimp:BuildRequires:	gimp-devel <  1:1.3.0}
-%{!?_without_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
+%{?_with_gimp:BuildRequires:	gimp-devel <  1:1.3.0}
+%{?_with_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	texinfo
@@ -288,7 +288,7 @@ Dane foomatic dla sterownika IJS gimp-print.
 
 %build
 rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
-%{!?_without_gimp:rm -f m4extra/gimp.m4}
+%{?_with_gimp:rm -f m4extra/gimp.m4}
 %{__libtoolize}
 %{__autopoint}
 %{__aclocal} -I m4 -I m4extra
@@ -300,7 +300,7 @@ touch src/main/gimpprint.pc.in \
 %configure \
 	%{?debug:--enable-debug} \
 	--with%{?_without_cups:out}-cups \
-	--with%{?_without_gimp:out}-gimp \
+	--with%{!?_with_gimp:out}-gimp \
 	--with%{?_without_ijs:out}-ijs \
 	--with%{?_without_foomatic:out}-foomatic \
 	%{?_with_static:--enable-static} \
