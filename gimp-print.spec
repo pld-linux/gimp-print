@@ -10,6 +10,7 @@
 # - port info.patch (if needed)
 # - think about not including PPDs in package and allow generation by cups-genppd
 #
+%include	/usr/lib/rpm/macros.perl
 Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
@@ -31,6 +32,7 @@ BuildRequires:	texinfo-texi2dvi
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
 %{!?_without_ijs:BuildRequires:	ghostscript-ijs-devel}
+BuildRequires:	rpm-perlprov >= 3.0.3-16
 Requires:	gimp >= 1:1.2.2-5
 Requires:	%{name}-lib = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
