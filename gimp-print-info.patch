@@ -1,0 +1,15 @@
+--- gimp-print-4.2.0/doc/gimpprint.texi~	Wed Feb  6 18:38:16 2002
++++ gimp-print-4.2.0/doc/gimpprint.texi	Wed Feb  6 18:38:16 2002
+@@ -20,9 +20,10 @@
+ @set BUGADDR @email{gimp-print-devel@@lists.sourceforge.net}
+ @set MAILLIST @email{gimp-print-devel@@lists.sourceforge.net}
+ 
+-@dircategory Libraries
++@dircategory Printing Tools:
+ @direntry
+-* GIMP-Print: (gimpprint).      print plugin for the GIMP, and printing library
++* GIMP-Print: (gimpprint).		Print plugin for the GIMP,
++					and printing library
+ @end direntry
+ 
+ @ifinfo
