@@ -1,18 +1,5 @@
-diff -Nru doc/functions.texi doc.new/functions.texi
---- gimp-print-4.2.0/doc/functions.texi	Tue Feb 12 01:03:41 2002
-+++ gimp-print-4.2.0/doc.new/functions.texi	Tue Feb 12 00:56:55 2002
-@@ -413,7 +413,7 @@
- user.
- @end deftypevr
- 
--@deftypefun void stp_set_option(stp_vars_t @var{v}, const char *@var{name}, const char *@var{data}, int @var{bytes})
-+@deftypefun void stp_set_option (stp_vars_t @var{v}, const char *@var{name}, const char *@var{data}, int @var{bytes})
- 
- @end deftypefun
- 
-
---- gimp-print-4.2.0/doc/gimpprint.texi~	Wed Feb  6 18:38:16 2002
-+++ gimp-print-4.2.0/doc/gimpprint.texi	Wed Feb  6 18:38:16 2002
+--- gimp-print-4.3.8/doc/developer/gimpprint.texi.orig	Sat Dec  1 16:07:50 2001
++++ gimp-print-4.3.8/doc/developer/gimpprint.texi	Sat Feb 22 00:34:44 2003
 @@ -20,9 +20,9 @@
  @set BUGADDR @email{gimp-print-devel@@lists.sourceforge.net}
  @set MAILLIST @email{gimp-print-devel@@lists.sourceforge.net}

@@ -8,8 +8,6 @@
 #
 # TODO:
 # - port info_and_pdf_only.patch and install documentation in correct place.
-# - port install.patch (afect only gimp plugin)
-# - port info.patch (if needed)
 # - think about not including PPDs in package and allow generation by cups-genppd
 #
 %include	/usr/lib/rpm/macros.perl
@@ -18,27 +16,26 @@ Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Summary(pt_BR):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
 Version:	4.3.8
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://prdownloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-install.patch
-Patch1:		%{name}-info.patch
-Patch2:		%{name}-usb.patch
+Patch0:		%{name}-info.patch
+Patch1:		%{name}-usb.patch
+Patch2:		%{name}-gettext.patch
 Patch3:		%{name}-info_and_pdf_only.patch
-Patch4:		%{name}-gettext.patch
 URL:		http://gimp-print.sf.net/
 %{!?_without_cups:BuildRequires:	cups-devel >= 1.1.9}
-%{!?_without_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
-BuildRequires:	gtk+-devel >= 1.2.0
-BuildRequires:	texinfo
-BuildRequires:	texinfo-texi2dvi
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
+%{!?_without_foomatic:BuildRequires:	foomatic-db-engine >= 2.9.1}
 BuildRequires:	gettext-autopoint
 %{!?_without_ijs:BuildRequires:	ghostscript-ijs-devel}
+%{!?_without_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
+BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	rpm-perlprov >= 3.0.3-16
-%{!?_without_foomatic:BuildRequires:	foomatic-db-engine >= 2.9.1}
+BuildRequires:	texinfo
+BuildRequires:	texinfo-texi2dvi
 Requires:	gimp >= 1:1.2.2-5
 Requires:	libgimpprint = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -264,6 +261,7 @@ Sterownik IJS Gimp-print dla GhostScript.
 
 %package -n foomatic-db-gimp-print
 Summary:	foomatic data for gimp-print IJS driver
+Summary(pl):	Dane foomatic dla sterownika IJS gimp-print
 Group:		Applications/Printing
 Requires:	%{name}-ijs = %{version}-%{release}
 Requires:	foomatic-db-engine >= 2.9.1
@@ -271,13 +269,20 @@ Requires:	foomatic-db-engine >= 2.9.1
 %description -n foomatic-db-gimp-print
 foomatic data for gimp-print IJS driver.
 
+%description -n foomatic-db-gimp-print -l pl
+Dane foomatic dla sterownika IJS gimp-print.
+
 %prep 
 %setup  -q 
-#%patch0 -p1
-#%patch1 -p1
-%patch2 -p1
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1 
 #%patch3 -p1
-%patch4 -p1 
+
+# hack for gimp 1.3, but not sufficient to build
+#if [ -f %{_aclocaldir}/gimp-1.4.m4 ]; then
+#	echo 'AC_DEFUN([AM_PATH_GIMP],AM_PATH_GIMP_1_4)' > m4/gimp14.m4
+#fi
 
 %build
 rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
