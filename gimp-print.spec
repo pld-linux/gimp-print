@@ -25,6 +25,7 @@ URL:		http://gimp-print.sf.net/
 BuildRequires:	gimp-devel >= 1:1.2.2-5
 BuildRequires:	cups-devel >= 1.1.9
 BuildRequires:	/usr/bin/texi2html
+BuildRequires:	/usr/bin/texi2dvi
 BuildRequires:	tetex-dvips
 BuildRequires:	texinfo
 BuildRequires:	/usr/bin/db2html
