@@ -1,0 +1,11 @@
+--- gimp-print-4.2.6/configure.in.orig	2004-01-17 15:52:39.000000000 +0100
++++ gimp-print-4.2.6/configure.in	2004-01-17 15:55:25.166687384 +0100
+@@ -472,7 +472,7 @@
+   AC_DEFINE(HAVE_GNU_LD,, [Define if GNU ld is present.])
+ fi
+ 
+-AM_CONDITIONAL(BUILD_GENPPD_STATIC, test x"$enable_static" = xyes)
++AM_CONDITIONAL(BUILD_GENPPD_STATIC, false)
+ 
+ if test "$enable_static" = no -a "$BUILD_CUPS" = yes ; then
+   AC_MSG_WARN([--enable-static is disabled, but CUPS is being built.])
