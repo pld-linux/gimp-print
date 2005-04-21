@@ -32,6 +32,7 @@ BuildRequires:	gettext-devel
 %{?with_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
 %{?with_gimp:BuildRequires:	gimp-devel < 1.3}
 BuildRequires:	gtk+-devel >= 1.2.0
+BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
