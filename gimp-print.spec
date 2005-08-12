@@ -290,6 +290,7 @@ Dane foomatic dla sterownika IJS gimp-print.
 mv -f po/{no,nb}.po
 
 echo 'AC_DEFUN([AM_PATH_GTK],[$3])' > m4/gtk.m4
+echo 'AC_DEFUN([AM_PATH_GLIB],[$3])' > m4/glib.m4
 
 %build
 rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
@@ -401,7 +402,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgimpprintui2.so
 %{_libdir}/libgimpprintui2.la
 %{_includedir}/gimp-print-ui2
-%{_pkgconfigdir}/gimpprintui2.pc
+%{_includedir}/gimp-print-ui
+%{_pkgconfigdir}/gimpprintui*.pc
 
 %if %{with static_libs}
 %files -n libgimpprintui-static
@@ -422,8 +424,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cups-*
 %attr(755,root,root) %{_sbindir}/cups-*
 %{_datadir}/cups/calibrate.ppm
-#%{_datadir}/cups/model/C/*
-%{_datadir}/cups/model/gimp-print/en/*
+%{_datadir}/cups/model/gimp-print/5.0/C/*
 #%lang(en_GB) %{_datadir}/cups/model/gimp-print/en_GB/*
 #%lang(da) %{_datadir}/cups/model/gimp-print/da/*
 #%lang(de) %{_datadir}/cups/model/gimp-print/de/*
