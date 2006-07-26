@@ -21,7 +21,7 @@ Patch3:		%{name}-opt.patch
 Patch4:		%{name}-nolibs.patch
 Patch5:		%{name}-genppd-nostatic.patch
 Patch6:		%{name}-locale-names.patch
-URL:		http://gimp-print.sf.net/
+URL:		http://gimp-print.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 %{?with_cups:BuildRequires:	cups-devel >= 1.1.9}
@@ -29,8 +29,8 @@ BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
 BuildRequires:	gettext-devel
 %{?with_ijs:BuildRequires:	ghostscript-ijs-devel}
-%{?with_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
 %{?with_gimp:BuildRequires:	gimp-devel < 1.3}
+%{?with_gimp:BuildRequires:	gimp-devel >= 1:1.2.3-1.4}
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
@@ -38,10 +38,10 @@ BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
 # requred by texi2dvi when @image is used in .texi
 BuildRequires:	tetex-dvips
-BuildRequires:	tetex-tex-misc
 BuildRequires:	tetex-format-plain
-Requires:	gimp >= 1:1.2.2-5
+BuildRequires:	tetex-tex-misc
 Requires:	%{name}-lib = %{version}
+Requires:	gimp >= 1:1.2.2-5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
