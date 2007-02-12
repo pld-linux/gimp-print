@@ -5,8 +5,8 @@
 %bcond_without	ijs	# don't build IJS server for Ghostscript
 #
 Summary:	Collection of high-quality printer drivers
-Summary(pl):	Zestaw wysokiej jako∂ci sterownikÛw do drukarek
-Summary(pt_BR):	plugin GIMP-Print para impress„o de imagens em alta qualidade
+Summary(pl.UTF-8):   Zestaw wysokiej jako≈õci sterownik√≥w do drukarek
+Summary(pt_BR.UTF-8):   plugin GIMP-Print para impress√£o de imagens em alta qualidade
 Name:		gimp-print
 Version:	4.2.7
 Release:	1
@@ -56,82 +56,82 @@ users report that the quality of Gimp-Print on high end Epson Stylus
 printers matches or exceeds the quality of the drivers supplied for
 Windows and Macintosh.
 
-%description -l pl
-Gimp-Print to zbiÛr bardzo wysokiej jako∂ci sterownikÛw do drukarek
-dla systemÛw UNIX/Linux. Celem tego projektu jest jak najlepsza jako∂Ê
-wydruku. Do≥±czone do tego pakietu s±: wtyczka dla programu GIMP (st±d
-nazwa), sterownik CUPS i sterownik Ghostscriptu. Sterownik umoøliwia
-bezpo∂redni± wspÛ≥pracÍ z wieloma kolejkami wydruku. Dodatkowo
-do≥±czonych jest wiele programÛw do obs≥ugi drukarki. Wielu
-uøytkownikÛw twierdzi ze jako∂Ê wydrukÛw na najlepszych drukarkach
-Epson Stylus dorÛwnuje albo nawet przerasta jako∂ci± to, co jest
+%description -l pl.UTF-8
+Gimp-Print to zbi√≥r bardzo wysokiej jako≈õci sterownik√≥w do drukarek
+dla system√≥w UNIX/Linux. Celem tego projektu jest jak najlepsza jako≈õƒá
+wydruku. Do≈ÇƒÖczone do tego pakietu sƒÖ: wtyczka dla programu GIMP (stƒÖd
+nazwa), sterownik CUPS i sterownik Ghostscriptu. Sterownik umo≈ºliwia
+bezpo≈õredniƒÖ wsp√≥≈Çpracƒô z wieloma kolejkami wydruku. Dodatkowo
+do≈ÇƒÖczonych jest wiele program√≥w do obs≈Çugi drukarki. Wielu
+u≈ºytkownik√≥w twierdzi ze jako≈õƒá wydruk√≥w na najlepszych drukarkach
+Epson Stylus dor√≥wnuje albo nawet przerasta jako≈õciƒÖ to, co jest
 oferowane przez sterowniki dla Windows i MacOS.
 
-%description -l pt_BR
-Este È um plugin para o Gimp que permite a impress„o de imagens e
-fotos em uma qualidade muito boa em v·rias impressoras de jato de
+%description -l pt_BR.UTF-8
+Este √© um plugin para o Gimp que permite a impress√£o de imagens e
+fotos em uma qualidade muito boa em v√°rias impressoras de jato de
 tinta modernas e em algumas lasers. Especialmente nas impressoras
 Epsion Stylus a qualidade se equipara a mesma obtida em sistema
-operacionais propriet·rios, uma vez que a Epson publicou as
-especificaÁıes dos protocolos usados por suas impressoras. Outras
-marcas de impressoras como HP tambÈm atingem qualidades altas de
-impress„o. Esse plugin tambÈm È capaz de gerar arquivos Postscript que
+operacionais propriet√°rios, uma vez que a Epson publicou as
+especifica√ß√µes dos protocolos usados por suas impressoras. Outras
+marcas de impressoras como HP tamb√©m atingem qualidades altas de
+impress√£o. Esse plugin tamb√©m √© capaz de gerar arquivos Postscript que
 permite ser usado em qualquer outra impressora.
 
 %package lib
 Summary:	gimp-print library
-Summary(pl):	Biblioteka gimp-print
-Summary(pt_BR):	Bibliotecas din‚micas para impress„o de alta qualidade
+Summary(pl.UTF-8):   Biblioteka gimp-print
+Summary(pt_BR.UTF-8):   Bibliotecas din√¢micas para impress√£o de alta qualidade
 Group:		Libraries
 
 %description lib
 Gimp-print library.
 
-%description lib -l pl
+%description lib -l pl.UTF-8
 Biblioteka gimp-print.
 
-%description lib -l pt_BR
-Esse pacote contÈm bibliotecas din‚micas de alta qualidade para serem
+%description lib -l pt_BR.UTF-8
+Esse pacote cont√©m bibliotecas din√¢micas de alta qualidade para serem
 usados pelo plugin do Gimp gimp-print, pelo driver "stp" do
 ghostscript e por drivers especializados do CUPS
 
 %package devel
 Summary:	gimp-print development tools
-Summary(pl):	Pliki nag≥Ûwkowe itp. do gimp-print
-Summary(pt_BR):	CabeÁalhos e arquivos de desenvolvimento para o libgimpprint
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe itp. do gimp-print
+Summary(pt_BR.UTF-8):   Cabe√ßalhos e arquivos de desenvolvimento para o libgimpprint
 Group:		Development/Libraries
 Requires:	%{name}-lib = %{version}-%{release}
 
 %description devel
 Gimp-print development tools and headers.
 
-%description devel -l pl
-Nag≥Ûwki i narzÍdzia deweloperskie dla Gimp-print.
+%description devel -l pl.UTF-8
+Nag≈Ç√≥wki i narzƒôdzia deweloperskie dla Gimp-print.
 
-%description devel -l pt_BR
-Este s„o os arquivos de desenvolvimento para compilar programas com a
+%description devel -l pt_BR.UTF-8
+Este s√£o os arquivos de desenvolvimento para compilar programas com a
 biblioteca libgimpprint.
 
 %package static
 Summary:	gimp-print static libraries
-Summary(pl):	Statyczne biblioteki gimp-print
-Summary(pt_BR):	Bibliotecas est·ticas para desenvolvimento com gimp-print
+Summary(pl.UTF-8):   Statyczne biblioteki gimp-print
+Summary(pt_BR.UTF-8):   Bibliotecas est√°ticas para desenvolvimento com gimp-print
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Gimp-print static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne Gimp-print.
 
-%description static -l pt_BR
-Bibliotecas est·ticas para desenvolvimento com gimp-print.
+%description static -l pt_BR.UTF-8
+Bibliotecas est√°ticas para desenvolvimento com gimp-print.
 
 %package -n escputil
 Summary:	Tool for Epson ink printers
-Summary(pl):	NarzÍdzie do drukarek atramentowych Epson
-Summary(pt_BR):	Ferramenta de manutenÁ„o de impressoras ESPSON Stylus (R)
+Summary(pl.UTF-8):   Narzƒôdzie do drukarek atramentowych Epson
+Summary(pt_BR.UTF-8):   Ferramenta de manuten√ß√£o de impressoras ESPSON Stylus (R)
 Group:		Applications/Printing
 
 %description -n escputil
@@ -144,31 +144,31 @@ can be used to perform the following tests:
 - Ink level
 - Printer Identify
 
-%description -n escputil -l pl
-Dzia≥aj±ce z linii poleceÒ narzÍdzie dla drukarek atramentowych Epson.
-Moøe byÊ uøyte do:
-- oczyszczenia g≥owicy
+%description -n escputil -l pl.UTF-8
+Dzia≈ÇajƒÖce z linii polece≈Ñ narzƒôdzie dla drukarek atramentowych Epson.
+Mo≈ºe byƒá u≈ºyte do:
+- oczyszczenia g≈Çowicy
 - testu dysz
-- wyrÛwnania g≥owicy
+- wyr√≥wnania g≈Çowicy
 - odczytu stanu drukarki
-- odczytu ilo∂ci tuszu
+- odczytu ilo≈õci tuszu
 - identyfikacji drukarki.
 
-%description -n escputil -l pt_BR
-Ferramenta de manutenÁ„o de impressoras ESPSON Stylus (R). Esta
-ferramenta de linha de comando È usada para executar as seguintes
+%description -n escputil -l pt_BR.UTF-8
+Ferramenta de manuten√ß√£o de impressoras ESPSON Stylus (R). Esta
+ferramenta de linha de comando √© usada para executar as seguintes
 tarefas:
-- Limpeza de cabeÁote
-- Checagem de Qualidade de impress„o
-- Alinhamento de cabeÁote
+- Limpeza de cabe√ßote
+- Checagem de Qualidade de impress√£o
+- Alinhamento de cabe√ßote
 - Estado da Impressora
-- NÌvel de tinta
-- IdentificaÁ„o da Impressora
+- N√≠vel de tinta
+- Identifica√ß√£o da Impressora
 
 %package cups
 Summary:	gimp-print as CUPS plugin
-Summary(pl):	gimp-print jako wtyczka do CUPS
-Summary(pt_BR):	Entradas ppd para serem usadas com o cups
+Summary(pl.UTF-8):   gimp-print jako wtyczka do CUPS
+Summary(pt_BR.UTF-8):   Entradas ppd para serem usadas com o cups
 Group:		Applications/Printing
 Requires:	%{name}-lib = %{version}-%{release}
 Requires:	cups >= 1.1.9
@@ -176,33 +176,33 @@ Requires:	cups >= 1.1.9
 %description cups
 Gimp-print as CUPS plugin.
 
-%description cups -l pl
+%description cups -l pl.UTF-8
 Wtyczka gimp-print dla CUPS.
 
-%description cups -l pt_BR
-Este pacote contÈm os arquivos ppd para se usar o driver Gimp-Print
-com o sistema de impress„o cups.
+%description cups -l pt_BR.UTF-8
+Este pacote cont√©m os arquivos ppd para se usar o driver Gimp-Print
+com o sistema de impress√£o cups.
 
 %package samples
 Summary:	gimp-print samples
-Summary(pl):	Przyk≥ady do gimp-print
+Summary(pl.UTF-8):   Przyk≈Çady do gimp-print
 Group:		Applications/Printing
 
 %description samples
 Gimp-print samples.
 
-%description samples -l pl
-Przyk≥ady dla Gimp-print.
+%description samples -l pl.UTF-8
+Przyk≈Çady dla Gimp-print.
 
 %package ijs
 Summary:	gimp-print IJS driver for GhostScript
-Summary(pl):	Sterownik IJS gimp-print dla GhostScripta
+Summary(pl.UTF-8):   Sterownik IJS gimp-print dla GhostScripta
 Group:		Applications/Printing
 
 %description ijs
 Gimp-print IJS driver for GhostScript.
 
-%description ijs -l pl
+%description ijs -l pl.UTF-8
 Sterownik IJS Gimp-print dla GhostScript.
 
 %prep
