@@ -5,8 +5,8 @@
 %bcond_without	ijs	# don't build IJS server for Ghostscript
 #
 Summary:	Collection of high-quality printer drivers
-Summary(pl.UTF-8):   Zestaw wysokiej jakości sterowników do drukarek
-Summary(pt_BR.UTF-8):   plugin GIMP-Print para impressão de imagens em alta qualidade
+Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
+Summary(pt_BR.UTF-8):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
 Version:	4.2.7
 Release:	1
@@ -80,8 +80,8 @@ permite ser usado em qualquer outra impressora.
 
 %package lib
 Summary:	gimp-print library
-Summary(pl.UTF-8):   Biblioteka gimp-print
-Summary(pt_BR.UTF-8):   Bibliotecas dinâmicas para impressão de alta qualidade
+Summary(pl.UTF-8):	Biblioteka gimp-print
+Summary(pt_BR.UTF-8):	Bibliotecas dinâmicas para impressão de alta qualidade
 Group:		Libraries
 
 %description lib
@@ -97,8 +97,8 @@ ghostscript e por drivers especializados do CUPS
 
 %package devel
 Summary:	gimp-print development tools
-Summary(pl.UTF-8):   Pliki nagłówkowe itp. do gimp-print
-Summary(pt_BR.UTF-8):   Cabeçalhos e arquivos de desenvolvimento para o libgimpprint
+Summary(pl.UTF-8):	Pliki nagłówkowe itp. do gimp-print
+Summary(pt_BR.UTF-8):	Cabeçalhos e arquivos de desenvolvimento para o libgimpprint
 Group:		Development/Libraries
 Requires:	%{name}-lib = %{version}-%{release}
 
@@ -114,8 +114,8 @@ biblioteca libgimpprint.
 
 %package static
 Summary:	gimp-print static libraries
-Summary(pl.UTF-8):   Statyczne biblioteki gimp-print
-Summary(pt_BR.UTF-8):   Bibliotecas estáticas para desenvolvimento com gimp-print
+Summary(pl.UTF-8):	Statyczne biblioteki gimp-print
+Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com gimp-print
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -130,8 +130,8 @@ Bibliotecas estáticas para desenvolvimento com gimp-print.
 
 %package -n escputil
 Summary:	Tool for Epson ink printers
-Summary(pl.UTF-8):   Narzędzie do drukarek atramentowych Epson
-Summary(pt_BR.UTF-8):   Ferramenta de manutenção de impressoras ESPSON Stylus (R)
+Summary(pl.UTF-8):	Narzędzie do drukarek atramentowych Epson
+Summary(pt_BR.UTF-8):	Ferramenta de manutenção de impressoras ESPSON Stylus (R)
 Group:		Applications/Printing
 
 %description -n escputil
@@ -167,8 +167,8 @@ tarefas:
 
 %package cups
 Summary:	gimp-print as CUPS plugin
-Summary(pl.UTF-8):   gimp-print jako wtyczka do CUPS
-Summary(pt_BR.UTF-8):   Entradas ppd para serem usadas com o cups
+Summary(pl.UTF-8):	gimp-print jako wtyczka do CUPS
+Summary(pt_BR.UTF-8):	Entradas ppd para serem usadas com o cups
 Group:		Applications/Printing
 Requires:	%{name}-lib = %{version}-%{release}
 Requires:	cups >= 1.1.9
@@ -185,7 +185,7 @@ com o sistema de impressão cups.
 
 %package samples
 Summary:	gimp-print samples
-Summary(pl.UTF-8):   Przykłady do gimp-print
+Summary(pl.UTF-8):	Przykłady do gimp-print
 Group:		Applications/Printing
 
 %description samples
@@ -196,7 +196,7 @@ Przykłady dla Gimp-print.
 
 %package ijs
 Summary:	gimp-print IJS driver for GhostScript
-Summary(pl.UTF-8):   Sterownik IJS gimp-print dla GhostScripta
+Summary(pl.UTF-8):	Sterownik IJS gimp-print dla GhostScripta
 Group:		Applications/Printing
 
 %description ijs
