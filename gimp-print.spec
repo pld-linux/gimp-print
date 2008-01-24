@@ -259,11 +259,11 @@ rm -rf $RPM_BUILD_ROOT
 %post	lib -p /sbin/ldconfig
 %postun	lib -p /sbin/ldconfig
 
-%post devel
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+%post devel	-p	/sbin/postshell
+-/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun devel
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+%postun devel	-p	/sbin/postshell
+-/usr/sbin/fix-info-dir -c %{_infodir}
 
 %if %{with gimp}
 %files
