@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
 Summary(pt_BR.UTF-8):	plugin GIMP-Print para impressão de imagens em alta qualidade
 Name:		gimp-print
 Version:	4.2.7
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.gz
