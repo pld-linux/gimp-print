@@ -1,4 +1,6 @@
 #
+#INFO - deprecated, now is gutenprint.spec
+#
 # Conditional build:
 %bcond_without	cups	# don't build CUPS plugin
 %bcond_with	gimp	# build GIMP 1.2.x plugin subpackage
