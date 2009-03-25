@@ -42,6 +42,7 @@ BuildRequires:	texinfo-texi2dvi
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-format-plain
 BuildRequires:	tetex-tex-misc
+BuildRequires:	texi2html
 Requires:	%{name}-lib = %{version}
 Requires:	gimp >= 1:1.2.2-5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
